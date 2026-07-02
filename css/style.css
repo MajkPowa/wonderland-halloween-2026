@@ -1533,3 +1533,90 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 @media (prefers-reduced-motion: reduce) {
   .tix-card-vip::before { animation: none; }
 }
+/* ============================================================
+   TICKET CONTENT FIT — text sedí uvnitř rytého rámu, výraznější
+   ============================================================ */
+.tix-card {
+  padding: 2.5rem 2.4rem 1.9rem;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(7, 6, 10, 0.62), rgba(7, 6, 10, 0.18) 75%),
+    linear-gradient(180deg, rgba(7, 6, 10, 0.15), rgba(7, 6, 10, 0.35) 55%, rgba(7, 6, 10, 0.55)),
+    url('../img/ticket-dark-760.webp') center / 100% 100% no-repeat,
+    #0c0a10;
+}
+.tix-card-vip {
+  padding-top: 3.1rem;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(5, 8, 16, 0.6), rgba(5, 8, 16, 0.15) 75%),
+    linear-gradient(180deg, rgba(5, 8, 16, 0.12), rgba(5, 8, 16, 0.32) 55%, rgba(5, 8, 16, 0.52)),
+    url('../img/ticket-blue-760.webp') center / 100% 100% no-repeat,
+    #0a1020;
+}
+.tix-head { margin-inline: -0.4rem; }
+.tix-name {
+  font-size: 1.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 26px rgba(216, 169, 78, 0.35);
+}
+.tix-tag { min-height: 0; color: #d9cfe6; font-size: 0.9rem; margin: 0.35rem 0 0.9rem; }
+.tix-price-num { font-size: 2.9rem; color: #fff; text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95), 0 0 30px rgba(216, 169, 78, 0.25); }
+.tix-wave-note { font-weight: 700; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9); }
+.tix-list { max-width: 100%; margin-bottom: 1.3rem; }
+.tix-list li {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.93rem;
+  padding: 0.45rem 0 0.45rem 1.6rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+}
+.tix-perfo { margin: 0.3rem -2.4rem 1rem; }
+@media (min-width: 900px) {
+  .tix-card { padding-inline: 2rem; }
+  .tix-perfo { margin-inline: -2rem; }
+}
+
+/* ============================================================
+   BLOOD SOCIAL BUTTONS — IG / FB / TikTok
+   ============================================================ */
+.footer-social { gap: 0.9rem; flex-wrap: wrap; }
+.blood-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.62em 1.25em;
+  background: linear-gradient(180deg, #b81524 0%, #8a0f1d 60%, #6e0a15 100%);
+  color: #fff !important;
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 7px;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.18), inset 0 -3px 6px rgba(0, 0, 0, 0.35), 0 6px 20px rgba(138, 15, 29, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.blood-btn::after {
+  content: '';
+  position: absolute;
+  top: 99%; left: 6%; right: 6%;
+  height: 16px;
+  background:
+    linear-gradient(#6e0a15, #6e0a15) 12% 0 / 3px 9px no-repeat,
+    radial-gradient(circle 3.5px, #6e0a15 3.3px, transparent 3.6px) calc(12% - 2px) 7px / 8px 8px no-repeat,
+    linear-gradient(#7c0c18, #7c0c18) 42% 0 / 4px 13px no-repeat,
+    radial-gradient(circle 4px, #7c0c18 3.8px, transparent 4.1px) calc(42% - 2px) 11px / 9px 9px no-repeat,
+    linear-gradient(#6e0a15, #6e0a15) 71% 0 / 3px 6px no-repeat,
+    radial-gradient(circle 3px, #6e0a15 2.8px, transparent 3.1px) calc(71% - 2px) 5px / 7px 7px no-repeat,
+    linear-gradient(#8a0f1d, #8a0f1d) 92% 0 / 3px 10px no-repeat,
+    radial-gradient(circle 3.2px, #8a0f1d 3px, transparent 3.3px) calc(92% - 2px) 8px / 7px 7px no-repeat;
+  pointer-events: none;
+}
+.blood-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.2), inset 0 -3px 6px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(200, 24, 40, 0.6);
+}
+.blood-btn svg { width: 17px; height: 17px; flex-shrink: 0; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
