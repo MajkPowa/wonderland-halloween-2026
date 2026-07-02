@@ -1620,3 +1620,69 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
   box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.2), inset 0 -3px 6px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(200, 24, 40, 0.6);
 }
 .blood-btn svg { width: 17px; height: 17px; flex-shrink: 0; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
+/* ============================================================
+   BURNING TICKETS — plameny šlehající zpoza vstupenek
+   ============================================================ */
+.tix-grid { align-items: stretch; }
+.tix-wrap { position: relative; display: flex; flex-direction: column; }
+.tix-wrap .tix-card { position: relative; z-index: 1; flex: 1; }
+.tix-fire {
+  position: absolute;
+  top: -19%; left: -9%; right: -9%;
+  height: 46%;
+  background: url('../img/flames.webp') center bottom / cover no-repeat;
+  mix-blend-mode: screen;
+  filter: saturate(1.3) brightness(1.05);
+  pointer-events: none;
+  z-index: 0;
+}
+.tix-fire-b { transform: scaleX(-1); top: -22%; height: 50%; }
+.tix-fire-c { background-position: 30% bottom; top: -17%; }
+/* teplá záře pod plameny na horní hraně lístku */
+.tix-wrap::before {
+  content: '';
+  position: absolute;
+  top: -12px; left: 6%; right: 6%;
+  height: 90px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 122, 24, 0.4), rgba(200, 24, 40, 0.18) 50%, transparent 75%);
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 2;
+  animation: fireFlicker 3.1s ease-in-out infinite;
+}
+@media (min-width: 900px) {
+  .tix-wrap-vip { transform: scale(1.05); z-index: 2; }
+  .tix-card-vip, .tix-card-vip:hover { transform: none; }
+}
+/* jiskry stoupající sekcí */
+.tix-ember {
+  position: absolute;
+  bottom: 8%;
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: #ffb347;
+  box-shadow: 0 0 10px 2px rgba(255, 122, 24, 0.75);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  animation: tixEmberUp var(--dur) linear var(--delay) infinite;
+  z-index: 1;
+}
+@keyframes tixEmberUp {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 0.95; }
+  70%  { opacity: 0.6; }
+  100% { transform: translate(var(--drift), -72vh) scale(0.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tix-fire, .tix-ember { display: none !important; }
+  .tix-wrap::before { animation: none; }
+}
+/* fire reach tuning */
+.tickets .tix-grid { margin-top: 3.6rem; }
+.tix-fire { top: -14%; height: 40%; }
+.tix-fire-b { top: -16%; height: 43%; }
+.tix-fire-c { top: -13%; }

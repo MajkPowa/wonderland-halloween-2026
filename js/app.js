@@ -596,6 +596,25 @@ function initBats() {
 }
 
 /* ============================================================
+   TICKET EMBERS — jiskry stoupající sekcí vstupenek
+   ============================================================ */
+function initTixEmbers() {
+  if (REDUCED_MOTION) return;
+  const sec = $('#vstupenky');
+  if (!sec) return;
+  for (let i = 0; i < 14; i++) {
+    const e = document.createElement('span');
+    e.className = 'tix-ember';
+    e.style.setProperty('--x', (3 + Math.random() * 94).toFixed(1) + '%');
+    e.style.setProperty('--s', (2 + Math.random() * 3.5).toFixed(1) + 'px');
+    e.style.setProperty('--dur', (7 + Math.random() * 9).toFixed(1) + 's');
+    e.style.setProperty('--delay', (Math.random() * 12).toFixed(1) + 's');
+    e.style.setProperty('--drift', ((Math.random() - 0.5) * 120).toFixed(0) + 'px');
+    sec.appendChild(e);
+  }
+}
+
+/* ============================================================
    FILM STRIP MARQUEE — duplicate content for seamless loop
    ============================================================ */
 function initStrip() {
@@ -760,6 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStrip();
   initLazyVideos();
   initBats();
+  initTixEmbers();
   initCountUp();
   initMenu();
   initEmbers();
