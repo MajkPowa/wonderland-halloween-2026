@@ -59,6 +59,7 @@ const I18N = {
 
     'why.title': 'This is not just another party.<br>This is Wonderland.',
     'why.lead': 'There is one night in Prague the whole year waits for. The Great Hall of Lucerna turns into a dark world of decorations, masks, lights, music, actors and show. Everything else is a compromise.',
+    'strip.title': 'See it with your own eyes',
     'why.b1': 'The biggest costume Halloween show in Prague',
     'why.b2': 'The legendary Lucerna palace',
     'why.b3': 'Produced since 2010',
@@ -427,8 +428,32 @@ function initEmbers() {
 }
 
 /* ============================================================
-   SCROLL: reveal, header state, parallax
+   SCROLL: Lenis smooth scroll, reveal, header, parallax, progress
    ============================================================ */
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lenis = null;
+
+function initLenis() {
+  if (REDUCED_MOTION || typeof Lenis === 'undefined') return;
+  lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1.03, touchMultiplier: 1.4 });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+}
+
+function initAnchors() {
+  $$('a[href^="#"]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href.length < 2) return; // js-buy "#" links have their own handler
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -64, duration: 1.4 });
+      else target.scrollIntoView();
+    });
+  });
+}
+
 function initScrollFx() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => {
@@ -438,9 +463,53 @@ function initScrollFx() {
   $$('.reveal').forEach(el => io.observe(el));
 
   const header = $('#siteHeader');
-  addEventListener('scroll', () => {
-    header.classList.toggle('is-scrolled', scrollY > 40);
-  }, { passive: true });
+  const progress = $('#scrollProgress');
+  const heroContent = $('#heroContent');
+  const plxEls = REDUCED_MOTION ? [] : $$('.why-bg img, .contest-bg img');
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const y = scrollY;
+      header.classList.toggle('is-scrolled', y > 40);
+
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (progress && max > 0) progress.style.width = (y / max * 100).toFixed(2) + '%';
+
+      // hero: content drifts up & fades as you leave the intro shot
+      if (!REDUCED_MOTION && heroContent && y < innerHeight * 1.1) {
+        heroContent.style.transform = 'translateY(' + (y * 0.28).toFixed(1) + 'px)';
+        heroContent.style.opacity = Math.max(0, 1 - y / (innerHeight * 0.85)).toFixed(3);
+      }
+
+      // parallax section backgrounds
+      for (const img of plxEls) {
+        const rect = img.parentElement.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > innerHeight + 100) continue;
+        const offset = (rect.top + rect.height / 2 - innerHeight / 2) * -0.12;
+        img.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0) scale(1.18)';
+      }
+    });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* ============================================================
+   FILM STRIP MARQUEE — duplicate content for seamless loop
+   ============================================================ */
+function initStrip() {
+  $$('.strip-row').forEach(row => {
+    row.innerHTML += row.innerHTML; // one duplicate = -50% loop
+    // speed scales with content width so both rows feel consistent
+    requestAnimationFrame(() => {
+      const half = row.scrollWidth / 2;
+      row.style.setProperty('--dur', Math.max(35, Math.round(half / 55)) + 's');
+    });
+  });
 }
 
 /* ============================================================
@@ -588,7 +657,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initPrices();
   initBuyButtons();
+  initLenis();
+  initAnchors();
   initScrollFx();
+  initStrip();
   initCountUp();
   initMenu();
   initEmbers();

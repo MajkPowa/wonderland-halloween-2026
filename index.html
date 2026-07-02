@@ -69,6 +69,11 @@
 </head>
 <body>
 
+  <!-- ================= CINEMATIC OVERLAYS ================= -->
+  <div class="fx-grain" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
   <!-- ================= SVG ICON SPRITE (gold line icons) ================= -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
     <symbol id="i-cal" viewBox="0 0 24 24">
@@ -161,18 +166,18 @@
     <canvas class="hero-embers" id="embers" aria-hidden="true"></canvas>
     <div class="hero-overlay"></div>
 
-    <div class="hero-content">
+    <div class="hero-content" id="heroContent">
       <h1 class="sr-only">Wonderland Halloween 2026 — Lucerna Praha, 30. 10. 2026</h1>
-      <p class="hero-kicker reveal" data-i18n="hero.kicker">Největší halloween v srdci Evropy</p>
-      <img class="hero-title reveal" src="img/title-1100.webp?v=2" alt="Wonderland Halloween" width="1100" height="278" fetchpriority="high">
-      <p class="hero-date reveal">
+      <p class="hero-kicker anim-up" style="--d:.1s" data-i18n="hero.kicker">Největší halloween v srdci Evropy</p>
+      <img class="hero-title anim-title" style="--d:.25s" src="img/title-1100.webp?v=2" alt="Wonderland Halloween" width="1100" height="278" fetchpriority="high">
+      <p class="hero-date anim-up" style="--d:.55s">
         <span class="hero-date-strong" data-i18n="hero.date">PÁ 30. 10. 2026</span>
         <span class="hero-date-sep">✦</span>
         <span data-i18n="hero.venue">Lucerna – Velký sál, Praha</span>
       </p>
-      <p class="hero-hook reveal" data-i18n="hero.hook">Jedna noc, tisíce masek, velkolepá show. Tohle je pražský Halloween.</p>
+      <p class="hero-hook anim-up" style="--d:.7s" data-i18n="hero.hook">Jedna noc, tisíce masek, velkolepá show. Tohle je pražský Halloween.</p>
 
-      <div class="countdown reveal" id="countdown" role="timer" aria-label="Odpočet do akce">
+      <div class="countdown anim-up" style="--d:.85s" id="countdown" role="timer" aria-label="Odpočet do akce">
         <div class="cd-box"><span class="cd-num" id="cdDays">—</span><span class="cd-label" data-i18n="cd.days">dní</span></div>
         <div class="cd-sep">:</div>
         <div class="cd-box"><span class="cd-num" id="cdHours">—</span><span class="cd-label" data-i18n="cd.hours">hodin</span></div>
@@ -182,11 +187,11 @@
         <div class="cd-box"><span class="cd-num" id="cdSecs">—</span><span class="cd-label" data-i18n="cd.secs">vteřin</span></div>
       </div>
 
-      <div class="hero-ctas reveal">
+      <div class="hero-ctas anim-up" style="--d:1s">
         <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="hero" data-i18n="cta.buy">Koupit lístek</a>
         <a href="#program" class="btn btn-ghost btn-lg" data-i18n="cta.program">Zobrazit program</a>
       </div>
-      <p class="hero-micro reveal" data-i18n="hero.micro">Kostým je povinný. Wonderland začíná už před vstupem.</p>
+      <p class="hero-micro anim-up" style="--d:1.15s" data-i18n="hero.micro">Kostým je povinný. Wonderland začíná už před vstupem.</p>
     </div>
     <a class="hero-scroll" href="#rychle-info" aria-label="Scrollovat dolů"><span></span></a>
   </section>
@@ -242,6 +247,34 @@
       </ul>
       <div class="center reveal">
         <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="why" data-i18n="cta.wanna">Chci být u toho</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FILM STRIP (auto marquee) ================= -->
+  <section class="strip" aria-label="Fotky z minulých ročníků">
+    <h2 class="strip-title reveal" data-i18n="strip.title">Zažij to na vlastní oči</h2>
+    <div class="strip-rows">
+      <div class="strip-row" data-dir="left">
+        <img src="img/hero-crowd-800.webp" alt="Zaplněný sál Lucerny s ohnivou show" loading="lazy" decoding="async">
+        <img src="img/catwalk-600.webp" alt="Molo nad davem v kostýmech" loading="lazy" decoding="async">
+        <img src="img/laser-web-800.webp" alt="Laserová síť nad sálem" loading="lazy" decoding="async">
+        <img src="img/winners-hall-600.webp" alt="Finalisté soutěže masek na molu" loading="lazy" decoding="async">
+        <img src="img/crowd-red-800.webp" alt="Sál v krvavě rudém světle" loading="lazy" decoding="async">
+        <img src="img/dj-ballroom-2024-600.webp" alt="DJ nad plným sálem" loading="lazy" decoding="async">
+        <img src="img/hall-fire-2024-800.webp" alt="Ohnivé plameny na pódiu" loading="lazy" decoding="async">
+        <img src="img/show-lasers-450.webp" alt="Lasery nad stage" loading="lazy" decoding="async">
+      </div>
+      <div class="strip-row" data-dir="right">
+        <img src="img/actor-pennywise-600.webp" alt="Klaun s balónky na molu" loading="lazy" decoding="async">
+        <img src="img/costume-skull-450.webp" alt="Maska Dia de los Muertos" loading="lazy" decoding="async">
+        <img src="img/brides-450.webp" alt="Upíří nevěsty" loading="lazy" decoding="async">
+        <img src="img/show-dancer-450.webp" alt="Tanečnice v péřové koruně" loading="lazy" decoding="async">
+        <img src="img/costume-devils-450.webp" alt="Démoni v červeném bodypaintu" loading="lazy" decoding="async">
+        <img src="img/actor-ghostrider-450.webp" alt="Ghost rider s řetězy" loading="lazy" decoding="async">
+        <img src="img/couple-balcony-600.webp" alt="Maskovaný pár na balkoně" loading="lazy" decoding="async">
+        <img src="img/costume-teeth-450.webp" alt="Hororová maska se zuby" loading="lazy" decoding="async">
+        <img src="img/vip-box-450.webp" alt="VIP box nad sálem" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -608,6 +641,7 @@
     <img id="lightboxImg" src="" alt="">
   </div>
 
+  <script src="js/lenis.min.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>
