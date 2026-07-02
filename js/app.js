@@ -8,7 +8,7 @@
 
 const CONFIG = {
   // --- Reenio předprodej (widget je vložený přímo v sekci #koupit) ---
-  reenioUrl: 'https://reenio.cz/cs/GEYDQMBS',
+  reenioUrl: 'https://wonderland.reenio.cz/cs/term/P1448231/2026-10-30;viewMode=day;hideResources=1;hideCalendar=1',
 
   // --- Ceny 1. vlny v Kč (POVINNÉ: nastavte reálné ceny z Reenia) ---
   prices: {
