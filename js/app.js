@@ -60,6 +60,8 @@ const I18N = {
     'why.title': 'This is not just another party.<br>This is Wonderland.',
     'why.lead': 'There is one night in Prague the whole year waits for. The Great Hall of Lucerna turns into a dark world of decorations, masks, lights, music, actors and show. Everything else is a compromise.',
     'strip.title': 'See it with your own eyes',
+    'band.orloj': 'When midnight strikes,<br>Prague transforms.',
+    'band.fog': 'One night. One city.<br>One Wonderland.',
     'why.b1': 'The biggest costume Halloween show in Prague',
     'why.b2': 'The legendary Lucerna palace',
     'why.b3': 'Produced since 2010',
@@ -465,7 +467,7 @@ function initScrollFx() {
   const header = $('#siteHeader');
   const progress = $('#scrollProgress');
   const heroContent = $('#heroContent');
-  const plxEls = REDUCED_MOTION ? [] : $$('.why-bg img, .contest-bg img');
+  const plxEls = REDUCED_MOTION ? [] : $$('.why-bg img, .contest-bg img, .venue-bg img, .vipf-bg img');
 
   let ticking = false;
   function onScroll() {
@@ -496,6 +498,77 @@ function initScrollFx() {
   }
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+}
+
+/* ============================================================
+   LAZY AMBIENT VIDEOS — load AI loops only when near viewport
+   ============================================================ */
+function initLazyVideos() {
+  const vids = $$('video[data-src]');
+  if (!vids.length) return;
+  const tryPlay = (v) => { const p = v.play(); if (p) p.catch(() => {}); };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const v = en.target;
+      io.unobserve(v);
+      v.src = v.dataset.src;
+      v.load();
+      tryPlay(v);
+    });
+  }, { rootMargin: '400px 0px' });
+  vids.forEach(v => io.observe(v));
+
+  // autoplay can be denied while the tab is backgrounded — retry on wake/first interaction
+  const resume = () => $$('video[data-src]').forEach(v => { if (v.src && v.paused) tryPlay(v); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) resume(); });
+  addEventListener('scroll', resume, { passive: true, once: false });
+}
+
+/* ============================================================
+   BATS — occasional silhouettes crossing the screen
+   ============================================================ */
+function initBats() {
+  if (REDUCED_MOTION) return;
+  const BAT_SVG = '<svg viewBox="0 0 64 36" xmlns="http://www.w3.org/2000/svg">'
+    + '<path class="bat-wl" d="M30 18 C22 6, 10 3, 2 9 C8 11, 11 15, 11 20 C17 15, 24 16, 30 18 Z" fill="currentColor"/>'
+    + '<path class="bat-wr" d="M34 18 C42 6, 54 3, 62 9 C56 11, 53 15, 53 20 C47 15, 40 16, 34 18 Z" fill="currentColor"/>'
+    + '<path d="M28 16 C29 11, 30 9, 30.5 7 L32 10 L33.5 7 C34 9, 35 11, 36 16 C36 22, 33 26, 32 28 C31 26, 28 22, 28 16 Z" fill="currentColor"/>'
+    + '</svg>';
+  let alive = 0;
+
+  function spawnBat() {
+    if (document.hidden || alive >= 3) return;
+    alive++;
+    const el = document.createElement('div');
+    el.className = 'bat';
+    el.innerHTML = BAT_SVG;
+    const size = 34 + Math.random() * 32;
+    el.style.setProperty('--bat-size', size.toFixed(0) + 'px');
+    document.body.appendChild(el);
+
+    const ltr = Math.random() < 0.5;
+    const startX = ltr ? -80 : innerWidth + 80;
+    const endX = ltr ? innerWidth + 80 : -80;
+    const baseY = innerHeight * (0.12 + Math.random() * 0.5);
+    const amp = 30 + Math.random() * 60;
+    const flip = ltr ? '' : ' scaleX(-1)';
+    const steps = 9;
+    const frames = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = startX + (endX - startX) * t;
+      const y = baseY + Math.sin(t * Math.PI * (2 + Math.random() * 0.4)) * amp - t * 60;
+      const tilt = Math.cos(t * Math.PI * 2) * 9;
+      frames.push({ transform: `translate(${x.toFixed(0)}px, ${y.toFixed(0)}px) rotate(${tilt.toFixed(1)}deg)${flip}` });
+    }
+    const anim = el.animate(frames, { duration: 7000 + Math.random() * 5000, easing: 'linear' });
+    anim.onfinish = () => { el.remove(); alive--; };
+  }
+
+  // first flock shortly after load, then occasional lone bats
+  setTimeout(() => { spawnBat(); setTimeout(spawnBat, 600); }, 2500);
+  setInterval(() => { if (Math.random() < 0.75) spawnBat(); }, 14000);
 }
 
 /* ============================================================
@@ -661,6 +734,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnchors();
   initScrollFx();
   initStrip();
+  initLazyVideos();
+  initBats();
   initCountUp();
   initMenu();
   initEmbers();

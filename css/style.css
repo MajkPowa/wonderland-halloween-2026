@@ -1061,3 +1061,136 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
   .anim-up, .anim-title { opacity: 1 !important; animation: none !important; }
   .strip-rows { transform: none; }
 }
+
+/* ============================================================
+   SPOOKY AI LAYER — cine bands, ambient candles, fog, bats
+   ============================================================ */
+
+/* full-bleed video interludes */
+.cine-band {
+  position: relative;
+  height: clamp(300px, 58vh, 560px);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cine-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.cine-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, var(--bg) 0%, transparent 22%, transparent 78%, var(--bg) 100%),
+    radial-gradient(ellipse at 50% 55%, transparent 40%, rgba(7, 6, 10, 0.55) 100%);
+}
+.cine-claim {
+  position: relative;
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 5.5vw, 2.8rem);
+  line-height: 1.25;
+  color: var(--gold-light);
+  text-align: center;
+  width: min(860px, 90%);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9), 0 0 60px rgba(216, 169, 78, 0.25);
+}
+
+/* candle ambience behind ticket cards */
+.tickets { overflow: hidden; }
+.tickets-ambient {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.tickets > .container { position: relative; }
+
+/* AI backgrounds: venue (gothic Prague), VIP form (mask still) */
+.venue-bg, .vipf-bg { position: absolute; inset: 0; overflow: hidden; }
+.venue-bg img, .vipf-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.venue-bg img { opacity: 0.38; }
+.vipf-bg img { opacity: 0.22; }
+.venue::before, .vip-form-sec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(7, 6, 10, 0.55) 30%, rgba(7, 6, 10, 0.7) 70%, var(--bg) 100%);
+}
+.venue-inner, .vip-form-sec .container { position: relative; z-index: 1; }
+
+/* gold engraved ornament dividers (black bg vanishes via screen blend) */
+.orn-img {
+  display: block;
+  width: min(440px, 78%);
+  height: auto;
+  margin: 0 auto 1.6rem;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+.orn-img-sm { width: min(320px, 62%); margin-bottom: 2.2rem; }
+
+/* drifting fog layers (hero) */
+.fog-layer {
+  position: absolute;
+  left: -20%; right: -20%;
+  height: 42%;
+  bottom: -6%;
+  z-index: 2;
+  pointer-events: none;
+  background: url('../img/fog-tex-1600.webp') center / 100% 100% no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.3;
+  animation: fogDrift 46s linear infinite alternate;
+}
+.fog-b {
+  bottom: -14%;
+  opacity: 0.2;
+  transform: scaleX(-1);
+  animation-duration: 64s;
+  animation-direction: alternate-reverse;
+}
+@keyframes fogDrift {
+  from { translate: -6% 0; }
+  to   { translate: 6% 0; }
+}
+
+/* flying bats */
+.bat {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--bat-size, 44px);
+  height: auto;
+  color: #0a0810;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  z-index: 85;
+  pointer-events: none;
+  will-change: transform;
+}
+.bat svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bat .bat-wl, .bat .bat-wr { transform-box: fill-box; }
+.bat .bat-wl { transform-origin: 92% 60%; animation: flapL 0.2s ease-in-out infinite alternate; }
+.bat .bat-wr { transform-origin: 8% 60%;  animation: flapR 0.2s ease-in-out infinite alternate; }
+@keyframes flapL { from { transform: rotate(6deg); }  to { transform: rotate(-34deg); } }
+@keyframes flapR { from { transform: rotate(-6deg); } to { transform: rotate(34deg); } }
+
+/* candle-flicker on section title stars */
+.section-title::before { animation: starFlicker 3.4s ease-in-out infinite; }
+@keyframes starFlicker {
+  0%, 100% { opacity: 0.9;  text-shadow: 0 0 14px rgba(216, 169, 78, 0.65); }
+  47%      { opacity: 0.75; text-shadow: 0 0 8px rgba(216, 169, 78, 0.4); }
+  52%      { opacity: 1;    text-shadow: 0 0 20px rgba(255, 122, 24, 0.8); }
+  60%      { opacity: 0.85; text-shadow: 0 0 12px rgba(216, 169, 78, 0.55); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog-layer, .section-title::before { animation: none !important; }
+  .bat { display: none !important; }
+}
