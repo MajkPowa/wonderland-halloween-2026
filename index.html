@@ -58,6 +58,11 @@
       "name": "Czech management group s.r.o.",
       "url": "https://wonderlandhalloween.cz"
     },
+    "performer": [
+      { "@type": "Person", "name": "DJ Mairee" },
+      { "@type": "Person", "name": "Mike Frost" },
+      { "@type": "MusicGroup", "name": "DJs Jaracuda" }
+    ],
     "offers": {
       "@type": "Offer",
       "url": "https://wonderlandhalloween.cz/#vstupenky",
@@ -144,6 +149,7 @@
     <nav class="header-nav" aria-label="Hlavní navigace">
       <a href="#vstupenky" data-i18n="nav.tickets">Vstupenky</a>
       <a href="#program" data-i18n="nav.program">Program</a>
+      <a href="#lineup" data-i18n="nav.lineup">Lineup</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
     </nav>
@@ -158,6 +164,7 @@
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní menu">
     <a href="#vstupenky" data-i18n="nav.tickets">Vstupenky</a>
     <a href="#program" data-i18n="nav.program">Program</a>
+    <a href="#lineup" data-i18n="nav.lineup">Lineup</a>
     <a href="#faq" data-i18n="nav.faq">FAQ</a>
     <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
     <button class="lang-switch lang-switch-mobile" id="langSwitchMobile">EN / CZ</button>
@@ -425,6 +432,34 @@
     </div>
   </section>
 
+  <!-- ================= LINEUP ================= -->
+  <section class="lineup" id="lineup">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="lu.title">Lineup</h2>
+      <p class="section-lead reveal" data-i18n="lu.lead">Za pultem se celou noc střídají jména, která rozhýbou celý Velký sál.</p>
+      <div class="lineup-grid">
+        <article class="dj-card dj-card-type reveal">
+          <div class="dj-mono" aria-hidden="true">M</div>
+          <h3 class="dj-name">DJ Mairee</h3>
+          <span class="dj-tag" data-i18n="lu.dj">DJ set</span>
+        </article>
+        <article class="dj-card dj-card-photo reveal">
+          <h3 class="sr-only">Mike Frost</h3>
+          <img class="dj-photo" src="img/dj-frost-350.webp" srcset="img/dj-frost-350.webp 350w, img/dj-frost-700.webp 700w" sizes="(min-width:768px) 30vw, 82vw" alt="Mike Frost s rukou nad zaplněným parketem" loading="lazy" decoding="async">
+          <div class="dj-overlay" aria-hidden="true"></div>
+          <img class="dj-logo" src="img/logo-frost.webp" alt="" width="400" height="221" loading="lazy" decoding="async">
+          <span class="dj-tag dj-tag-photo" data-i18n="lu.dj">DJ set</span>
+        </article>
+        <article class="dj-card dj-card-type reveal">
+          <div class="dj-mono" aria-hidden="true">J</div>
+          <h3 class="dj-name">DJs Jaracuda</h3>
+          <span class="dj-tag" data-i18n="lu.dj">DJ set</span>
+        </article>
+      </div>
+      <p class="lineup-note reveal" data-i18n="lu.note">…a další hosté večera. Lineup se ještě rozroste.</p>
+    </div>
+  </section>
+
   <!-- ================= 7) SOUTĚŽ MASEK ================= -->
   <section class="contest" id="soutez">
     <div class="contest-bg">
@@ -554,9 +589,13 @@
     <div class="container">
       <h2 class="section-title-sm reveal" data-i18n="part.title">Partneři</h2>
       <div class="partners-row reveal">
-        <img src="img/logo-mr.webp" alt="Mafia Records" loading="lazy" decoding="async" height="56">
-        <img src="img/logo-czparties.webp" alt="CZ Parties" loading="lazy" decoding="async" height="56">
-        <img src="img/logo-fear.webp" alt="Fear" loading="lazy" decoding="async" height="56">
+        <div class="partner-mark">
+          <span class="pm-big">CMG</span>
+          <span class="pm-sub">Czech Management Group</span>
+        </div>
+        <div class="partner-mark">
+          <span class="pm-big">HDT</span>
+        </div>
       </div>
       <div class="partners-cta reveal">
         <p data-i18n="part.pitch">Spojte svou značku s nocí, o které mluví celá Praha. Sampling, LCD branding, VIP experience, 350+ influencerů.</p>

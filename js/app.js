@@ -42,7 +42,11 @@ const CONFIG = {
    ============================================================ */
 const I18N = {
   en: {
-    'nav.tickets': 'Tickets', 'nav.program': 'Program', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
+    'nav.tickets': 'Tickets', 'nav.program': 'Program', 'nav.lineup': 'Lineup', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
+    'lu.title': 'Lineup',
+    'lu.lead': 'Names behind the decks that will move the whole Great Hall all night long.',
+    'lu.dj': 'DJ set',
+    'lu.note': '…and more guests of the night. The lineup keeps growing.',
     'cta.buy': 'Buy tickets', 'cta.program': 'See the program', 'cta.wanna': 'I want in',
     'cta.ticket': 'Buy a ticket', 'cta.join': 'Join them this year',
 
