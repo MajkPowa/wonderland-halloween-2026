@@ -304,21 +304,77 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 @keyframes scrollcue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
 
 /* ============================================================
-   QUICK INFO
+   QUICK INFO — ornamental double-framed strip
    ============================================================ */
 .quick-info { padding: clamp(2rem, 5vw, 3.5rem) 0; background: var(--bg); }
-.qi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-.qi-box {
-  background: linear-gradient(160deg, var(--bg-2), var(--bg-3));
+.qi-frame {
+  position: relative;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 1.1rem 1rem;
-  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(216, 169, 78, 0.06), transparent 65%),
+    var(--bg);
 }
-.qi-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
-.qi-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.2rem; }
-.qi-value { font-size: 0.92rem; color: var(--text); line-height: 1.4; }
-@media (min-width: 768px) { .qi-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; } }
+.qi-frame::before {
+  content: '';
+  position: absolute; inset: 5px;
+  border: 1px solid rgba(216, 169, 78, 0.12);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.qi-orn {
+  position: absolute; top: 0; left: 50%;
+  transform: translate(-50%, -55%);
+  background: var(--bg);
+  color: var(--gold);
+  font-size: 0.85rem;
+  padding: 0 0.7em;
+  line-height: 1;
+}
+.qi-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.qi-cell {
+  position: relative;
+  text-align: center;
+  padding: 1.4rem 1rem 1.2rem;
+}
+/* hairline separators: vertical between columns, horizontal between rows */
+.qi-cell:nth-child(odd)::after {
+  content: '';
+  position: absolute; top: 22%; bottom: 22%; right: 0; width: 1px;
+  background: linear-gradient(180deg, transparent, var(--line), transparent);
+}
+.qi-cell:nth-child(-n+2)::before {
+  content: '';
+  position: absolute; left: 14%; right: 14%; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+.qi-ico {
+  width: 26px; height: 26px;
+  color: var(--gold);
+  margin-bottom: 0.55rem;
+  filter: drop-shadow(0 0 6px rgba(216, 169, 78, 0.35));
+}
+.qi-label {
+  font-family: var(--font-head);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.qi-value { font-size: 0.93rem; color: var(--gold-light); line-height: 1.45; }
+@media (min-width: 768px) {
+  .qi-grid { grid-template-columns: repeat(4, 1fr); }
+  .qi-cell { padding: 1.7rem 1.2rem 1.5rem; }
+  .qi-cell::after {
+    content: '';
+    position: absolute; top: 22%; bottom: 22%; right: 0; width: 1px;
+    background: linear-gradient(180deg, transparent, var(--line), transparent);
+  }
+  .qi-cell:last-child::after { display: none; }
+  .qi-cell:nth-child(-n+2)::before { display: none; }
+}
 
 /* ============================================================
    WHY
@@ -334,22 +390,47 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 .why-grid {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.7rem;
-  margin: 0 0 2.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 0 0 2.4rem;
 }
 .why-grid li {
-  display: flex; align-items: center; gap: 0.8rem;
-  background: rgba(14, 10, 19, 0.7);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 0.75rem;
+  padding: 1.4rem 0.9rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(170deg, rgba(16, 11, 20, 0.92), rgba(10, 7, 13, 0.92)) padding-box,
+    linear-gradient(165deg, rgba(216, 169, 78, 0.55), rgba(216, 169, 78, 0.08) 45%, rgba(200, 24, 40, 0.35)) border-box;
   backdrop-filter: blur(4px);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.why-ico { font-size: 1.25rem; flex-shrink: 0; }
-@media (min-width: 700px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; } }
-@media (min-width: 1000px) { .why-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } .why-grid li { flex-direction: column; text-align: center; padding: 1.2rem 0.9rem; } }
+.why-grid li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5), 0 0 24px rgba(216, 169, 78, 0.1);
+}
+.why-emblem {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(216, 169, 78, 0.55);
+  background: radial-gradient(circle at 50% 40%, rgba(216, 169, 78, 0.12), transparent 70%);
+  transform: rotate(45deg);
+  border-radius: 3px;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+.why-svg {
+  width: 22px; height: 22px;
+  color: var(--gold);
+  transform: rotate(-45deg);
+  filter: drop-shadow(0 0 6px rgba(216, 169, 78, 0.4));
+}
+.why-grid li:hover .why-svg { color: var(--gold-light); }
+.why-text { color: var(--text); line-height: 1.45; }
+@media (min-width: 700px) { .why-grid { gap: 1rem; } }
+@media (min-width: 1000px) { .why-grid { grid-template-columns: repeat(4, 1fr); } .why-grid li { padding: 1.7rem 1rem 1.5rem; } }
 
 /* ============================================================
    TICKETS
