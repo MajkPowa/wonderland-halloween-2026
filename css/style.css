@@ -1309,3 +1309,173 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
   letter-spacing: 0.26em;
   color: var(--smoke);
 }
+/* ============================================================
+   EPIC TICKETS — real halloween ticket look + grasping hands
+   ============================================================ */
+.tix-card {
+  -webkit-mask-image:
+    radial-gradient(circle 13px at 0 calc(100% - 132px), transparent 12px, #000 13px),
+    radial-gradient(circle 13px at 100% calc(100% - 132px), transparent 12px, #000 13px);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle 13px at 0 calc(100% - 132px), transparent 12px, #000 13px),
+    radial-gradient(circle 13px at 100% calc(100% - 132px), transparent 12px, #000 13px);
+  mask-composite: intersect;
+}
+.tix-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-head);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(216, 169, 78, 0.25);
+  padding-bottom: 0.55rem;
+  margin-bottom: 1rem;
+}
+.tix-serial { color: var(--smoke); letter-spacing: 0.12em; }
+.tix-perfo {
+  height: 0;
+  border-top: 2px dashed rgba(216, 169, 78, 0.35);
+  margin: 0.3rem -1.5rem 1.05rem;
+}
+.tix-barcode { margin-top: 0.7rem; }
+.tix-barcode::before {
+  content: '';
+  display: block;
+  height: 22px;
+  background: repeating-linear-gradient(90deg,
+    rgba(247, 233, 195, 0.8) 0 2px, transparent 2px 5px,
+    rgba(247, 233, 195, 0.8) 5px 6px, transparent 6px 11px,
+    rgba(247, 233, 195, 0.8) 11px 14px, transparent 14px 16px,
+    rgba(247, 233, 195, 0.8) 16px 17px, transparent 17px 21px);
+  opacity: 0.4;
+}
+.tix-barcode span {
+  display: block;
+  text-align: center;
+  font-size: 0.56rem;
+  letter-spacing: 0.32em;
+  color: var(--smoke);
+  margin-top: 5px;
+  font-family: var(--font-head);
+}
+
+/* hands grasping at the tickets */
+.tickets { padding-bottom: clamp(170px, 26vw, 330px); }
+.tix-hands-strip {
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: clamp(140px, 24vw, 300px);
+  background: url('../img/hands-strip-1800.webp') bottom center / cover no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  pointer-events: none;
+  animation: handsRise 7s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes handsRise {
+  from { transform: translateY(16px); }
+  to   { transform: translateY(-8px); }
+}
+.tix-hand {
+  display: none;
+  position: absolute;
+  width: clamp(150px, 16vw, 290px);
+  height: auto;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (min-width: 1200px) {
+  .tix-hand { display: block; }
+  .tix-hand-l {
+    left: max(-30px, calc(50% - 46rem));
+    bottom: 32%;
+    transform-origin: bottom left;
+    animation: swayL 6.5s ease-in-out infinite alternate;
+  }
+  .tix-hand-r {
+    right: max(-30px, calc(50% - 46rem));
+    bottom: 28%;
+    transform-origin: bottom right;
+    animation: swayR 5.2s ease-in-out infinite alternate;
+  }
+}
+@keyframes swayL {
+  from { transform: rotate(-4deg) translateY(10px); }
+  to   { transform: rotate(3deg) translateY(-8px); }
+}
+@keyframes swayR {
+  from { transform: rotate(4deg) translateY(8px) scale(1); filter: brightness(1); }
+  to   { transform: rotate(-3deg) translateY(-10px) scale(1.03); filter: brightness(1.18); }
+}
+
+/* Reenio checkout embed */
+.checkout-block {
+  margin-top: 3rem;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background:
+    linear-gradient(170deg, rgba(16, 11, 20, 0.96), rgba(10, 7, 13, 0.96)) padding-box,
+    linear-gradient(165deg, rgba(216, 169, 78, 0.6), rgba(216, 169, 78, 0.12) 45%, rgba(200, 24, 40, 0.45)) border-box;
+  padding: clamp(1.2rem, 3.5vw, 2.4rem);
+}
+.checkout-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+.checkout-frame {
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px;
+  min-height: 480px;
+}
+.checkout-frame iframe { display: block; width: 100%; border: 0; border-radius: 6px; }
+.checkout-fallback { text-align: center; margin-top: 1rem; }
+.checkout-fallback a { color: var(--smoke); font-size: 0.85rem; }
+.checkout-fallback a:hover { color: var(--gold-light); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tix-hands-strip, .tix-hand { animation: none !important; }
+}
+/* ============================================================
+   LEGAL PAGES
+   ============================================================ */
+.legal-main { padding: 8rem 0 4rem; }
+.legal-main h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+  color: var(--gold-light);
+  margin-bottom: 0.4em;
+}
+.legal-updated { color: var(--smoke); font-size: 0.85rem; margin-bottom: 2.2rem; }
+.legal-main h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  color: var(--gold);
+  margin: 2.2rem 0 0.7rem;
+}
+.legal-main p, .legal-main li { color: var(--text); font-size: 0.95rem; margin-bottom: 0.7rem; }
+.legal-main ul, .legal-main ol { padding-left: 1.4rem; margin-bottom: 1rem; }
+.legal-main a { color: var(--gold); }
+.legal-main a:hover { color: var(--gold-light); }
+.legal-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.6rem; font-size: 0.85rem; }
+.legal-table th, .legal-table td { border: 1px solid rgba(216, 169, 78, 0.25); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+.legal-table th { color: var(--gold); font-family: var(--font-head); font-weight: 700; background: rgba(216, 169, 78, 0.06); }
+.legal-table td { color: var(--smoke); }
+.legal-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.legal-back:hover { color: var(--gold-light); }
+.legal-footer { border-top: 1px solid var(--line); padding: 1.6rem 0 2.4rem; text-align: center; color: #5d5568; font-size: 0.78rem; }

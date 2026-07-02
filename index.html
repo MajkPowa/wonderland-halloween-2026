@@ -310,6 +310,10 @@
       <div class="tix-grid">
         <!-- STANDARD -->
         <article class="tix-card reveal">
+          <div class="tix-head">
+            <span data-i18n="tix.head">Wonderland Halloween</span>
+            <span class="tix-serial">№ WH26-S</span>
+          </div>
           <h3 class="tix-name">Standard</h3>
           <p class="tix-tag" data-i18n="tix.std.tag">Pro ty, kdo chtějí být přímo uprostřed dění.</p>
           <div class="tix-price"><span class="tix-price-num" data-price="standard">—</span><span class="tix-price-cur">Kč</span></div>
@@ -321,12 +325,18 @@
             <li data-i18n="tix.std.f4">Účast v soutěži masek</li>
             <li data-i18n="tix.std.f5">Přístup k fotopointům a programu</li>
           </ul>
-          <a href="#" class="btn btn-outline btn-block js-buy" data-tier="standard" data-i18n="tix.std.cta">Koupit Standard</a>
+          <div class="tix-perfo" aria-hidden="true"></div>
+          <a href="#koupit" class="btn btn-outline btn-block js-buy" data-tier="standard" data-i18n="tix.std.cta">Koupit Standard</a>
+          <div class="tix-barcode" aria-hidden="true"><span>30 · 10 · 2026 — LUCERNA</span></div>
         </article>
 
         <!-- VIP -->
         <article class="tix-card tix-card-vip reveal">
           <div class="tix-badge" data-i18n="tix.vip.badge">Nejoblíbenější</div>
+          <div class="tix-head">
+            <span data-i18n="tix.head">Wonderland Halloween</span>
+            <span class="tix-serial">№ WH26-V</span>
+          </div>
           <h3 class="tix-name">VIP</h3>
           <p class="tix-tag" data-i18n="tix.vip.tag">Lepší komfort, výhled a prémiový zážitek.</p>
           <div class="tix-price"><span class="tix-price-num" data-price="vip">—</span><span class="tix-price-cur">Kč</span></div>
@@ -339,11 +349,17 @@
             <li data-i18n="tix.vip.f5">Rychlejší VIP vstup</li>
             <li data-i18n="tix.vip.f6">VIP atmosféra a dekorace</li>
           </ul>
-          <a href="#" class="btn btn-primary btn-block js-buy" data-tier="vip" data-i18n="tix.vip.cta">Koupit VIP</a>
+          <div class="tix-perfo" aria-hidden="true"></div>
+          <a href="#koupit" class="btn btn-primary btn-block js-buy" data-tier="vip" data-i18n="tix.vip.cta">Koupit VIP</a>
+          <div class="tix-barcode" aria-hidden="true"><span>30 · 10 · 2026 — LUCERNA</span></div>
         </article>
 
         <!-- VIP STOLY -->
         <article class="tix-card reveal">
+          <div class="tix-head">
+            <span data-i18n="tix.head">Wonderland Halloween</span>
+            <span class="tix-serial">№ WH26-T</span>
+          </div>
           <h3 class="tix-name" data-i18n="tix.tab.name">VIP stoly</h3>
           <p class="tix-tag" data-i18n="tix.tab.tag">Pro oslavy, firmy a skupiny přátel.</p>
           <div class="tix-price"><span class="tix-price-from" data-i18n="tix.from">od</span> <span class="tix-price-num" data-price="table">—</span><span class="tix-price-cur">Kč</span></div>
@@ -355,7 +371,9 @@
             <li data-i18n="tix.tab.f4">Prémiový výhled na hlavní pódium</li>
             <li data-i18n="tix.tab.f5">Ideální na narozeniny a firemní akce</li>
           </ul>
+          <div class="tix-perfo" aria-hidden="true"></div>
           <a href="#vip-stul" class="btn btn-outline btn-block" data-i18n="tix.tab.cta">Rezervovat stůl</a>
+          <div class="tix-barcode" aria-hidden="true"><span>30 · 10 · 2026 — LUCERNA</span></div>
         </article>
       </div>
 
@@ -365,8 +383,25 @@
         <span data-i18n="trust.email">✓ Vstupenka ihned do e-mailu</span>
         <span data-i18n="trust.card">✓ Platba kartou online</span>
       </div>
+
+      <!-- REENIO CHECKOUT EMBED -->
+      <div class="checkout-block reveal" id="koupit">
+        <h3 class="checkout-title" data-i18n="tix.checkout">Vyber si vstupenky rovnou tady</h3>
+        <div class="checkout-frame">
+          <div class="reenio-iframe" data-size="auto"></div>
+        </div>
+        <p class="checkout-fallback">
+          <a href="https://reenio.cz/cs/GEYDQMBS" target="_blank" rel="noopener" class="js-reenio-fallback" data-i18n="tix.fallback">Nenačítá se ti rezervace? Otevři předprodej v novém okně →</a>
+        </p>
+      </div>
     </div>
+
+    <!-- spooky hands reaching for the tickets -->
+    <div class="tix-hands-strip" aria-hidden="true"></div>
+    <img class="tix-hand tix-hand-l" src="img/hand-left-520.webp" alt="" width="520" height="694" loading="lazy" decoding="async" aria-hidden="true">
+    <img class="tix-hand tix-hand-r" src="img/hand-right-520.webp" alt="" width="520" height="694" loading="lazy" decoding="async" aria-hidden="true">
   </section>
+  <script src="https://reenio.cz/cs/GEYDQMBS/widget-iframe.js" async defer></script>
 
   <!-- ================= 5) EXPERIENCE ================= -->
   <section class="experience" id="zazitek">
@@ -664,8 +699,9 @@
         <div class="footer-col">
           <h3 data-i18n="foot.legal">Právní</h3>
           <ul>
-            <li><a href="#" data-i18n="foot.terms">Obchodní podmínky</a></li>
-            <li><a href="#" data-i18n="foot.privacy">Ochrana osobních údajů (GDPR)</a></li>
+            <li><a href="podminky.html" data-i18n="foot.terms">Obchodní podmínky</a></li>
+            <li><a href="gdpr.html" data-i18n="foot.privacy">Ochrana osobních údajů (GDPR)</a></li>
+            <li><a href="cookies.html" data-i18n="foot.cookiepolicy">Zásady cookies</a></li>
             <li><a href="#" id="cookieSettings" data-i18n="foot.cookies">Nastavení cookies</a></li>
           </ul>
           <p class="footer-trust">

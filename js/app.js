@@ -7,8 +7,8 @@
    ============================================================ */
 
 const CONFIG = {
-  // --- Reenio předprodej (POVINNÉ: nahraďte skutečnou rezervační URL) ---
-  reenioUrl: 'https://wonderlandhalloween.reenio.cz/cs/',
+  // --- Reenio předprodej (widget je vložený přímo v sekci #koupit) ---
+  reenioUrl: 'https://reenio.cz/cs/GEYDQMBS',
 
   // --- Ceny 1. vlny v Kč (POVINNÉ: nastavte reálné ceny z Reenia) ---
   prices: {
@@ -76,6 +76,9 @@ const I18N = {
     'why.b8': 'Photogenic decorations and themed scenes',
 
     'tix.title': 'Get your ticket before the price goes up',
+    'tix.head': 'Wonderland Halloween',
+    'tix.checkout': 'Pick your tickets right here',
+    'tix.fallback': 'Booking not loading? Open the presale in a new window →',
     'tix.wave': 'Wave 1 is live now — the lowest price. Until sold out. Then the price rises.',
     'tix.wavenote': 'Wave 1 — lowest price', 'tix.from': 'from',
     'tix.std.tag': 'For those who want to be right in the middle of it.',
@@ -154,7 +157,7 @@ const I18N = {
 
     'foot.claim': 'The biggest costume Halloween show in Prague. 30 / 10 / 2026, Lucerna Great Hall.',
     'foot.org': 'Organizer', 'foot.legal': 'Legal',
-    'foot.terms': 'Terms & Conditions', 'foot.privacy': 'Privacy Policy (GDPR)', 'foot.cookies': 'Cookie settings',
+    'foot.terms': 'Terms & Conditions', 'foot.privacy': 'Privacy Policy (GDPR)', 'foot.cookiepolicy': 'Cookie Policy', 'foot.cookies': 'Cookie settings',
 
     'exit.title': 'Before you go…',
     'exit.text': 'Wave 1 with the lowest price is still on. Once it sells out, the price goes up — and never comes back down.',
@@ -351,7 +354,24 @@ function initBuyButtons() {
       const tier = btn.dataset.tier || 'cta';
       trackInitiateCheckout(tier);
       sessionStorage.setItem('wl_clicked_buy', '1');
-      window.open(buildReenioUrl(tier), '_blank', 'noopener');
+      const exitModal = $('#exitModal');
+      if (exitModal && !exitModal.hidden) exitModal.hidden = true;
+      const menu = $('#mobileMenu');
+      if (menu) menu.classList.remove('is-open');
+      const target = $('#koupit');
+      if (target) {
+        if (lenis) lenis.scrollTo(target, { offset: -70, duration: 1.3 });
+        else target.scrollIntoView({ block: 'start' });
+      } else {
+        window.open(buildReenioUrl(tier), '_blank', 'noopener');
+      }
+    });
+  });
+  // fallback odkaz pod widgetem — přidá UTM parametry při kliku
+  $$('.js-reenio-fallback').forEach(a => {
+    a.addEventListener('click', () => {
+      trackInitiateCheckout('fallback');
+      a.href = buildReenioUrl('fallback');
     });
   });
   $$('.js-partner-mail').forEach(a => {

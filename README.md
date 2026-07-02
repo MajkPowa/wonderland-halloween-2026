@@ -8,7 +8,7 @@ Veškerá konfigurace je **na začátku souboru `js/app.js`** v objektu `CONFIG`
 
 | Klíč | Co s ním | Stav |
 |---|---|---|
-| `reenioUrl` | Skutečná URL Reenio předprodeje (všechna „Koupit" tlačítka vedou sem, UTM parametry se předávají automaticky) | ⚠️ **PLACEHOLDER — nahradit** |
+| `reenioUrl` | Reenio předprodej — widget je vložen přímo v sekci `#koupit` (GEYDQMBS), tlačítka „Koupit" na něj scrollují; URL slouží pro záložní odkaz | ✅ nastaveno |
 | `prices` | Ceny 1. vlny (Standard / VIP / VIP stůl „od") | ⚠️ **PLACEHOLDER — nastavit reálné ceny z Reenia** |
 | `soldPercent` | Stav prodeje vlny v % (zobrazí progress bar). **Používejte jen pravdivá čísla z Reenia.** `null` = bar skrytý | volitelné |
 | `gtmId` | Google Tag Manager ID | ⚠️ doplnit |
@@ -20,7 +20,7 @@ Veškerá konfigurace je **na začátku souboru `js/app.js`** v objektu `CONFIG`
 Dále zkontrolujte:
 
 - **Odkazy na sociální sítě** v patičce `index.html` (Instagram/TikTok/Facebook — nyní odhadnuté handly).
-- **Právní odkazy** v patičce (Obchodní podmínky, GDPR) — nyní vedou na `#`, doplňte reálné dokumenty.
+- **Právní dokumenty** — `podminky.html`, `gdpr.html` a `cookies.html` jsou kompletní návrhy textů. ⚠️ **Před spuštěním doporučujeme kontrolu právníkem** (zejména VOP a lhůty).
 - **Program večera** v sekci `#program` — časy dle finální produkce.
 - **Výhra v soutěži masek** — pokud bude konkrétní cena (např. 40 000 Kč), doplňte ji do sekce `#soutez` (silný tahák).
 - **Doména v meta tazích** — OG tagy počítají s `https://wonderlandhalloween.cz/`.
