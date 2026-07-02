@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Wonderland Halloween 2026 — Lucerna Praha | 30. 10. 2026</title>
+  <meta name="description" content="Největší kostýmová Halloween show v Praze se vrací do Lucerny. 30. 10. 2026, Velký sál. Tisíce masek, velkolepá show, soutěž o nejlepší masku. Kup vstupenku, než zdraží.">
+  <meta name="theme-color" content="#07060a">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Wonderland Halloween">
+  <meta property="og:title" content="Wonderland Halloween 2026 — Lucerna Praha">
+  <meta property="og:description" content="Největší kostýmová Halloween show v Praze. 30. 10. 2026, Lucerna – Velký sál. Jedna noc, tisíce masek. Kup vstupenku, než zdraží.">
+  <meta property="og:url" content="https://wonderlandhalloween.cz/">
+  <meta property="og:image" content="https://wonderlandhalloween.cz/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wonderlandhalloween.cz/og-image.jpg">
+
+  <link rel="canonical" href="https://wonderlandhalloween.cz/">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preload" href="fonts/Cinzel-Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="img/title-600.webp?v=2" as="image">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wonderland Halloween 2026",
+    "startDate": "2026-10-30T21:00:00+01:00",
+    "endDate": "2026-10-31T04:00:00+01:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "image": ["https://wonderlandhalloween.cz/og-image.jpg"],
+    "description": "Největší kostýmová Halloween show v Praze. Velký sál Lucerny se promění v temný Wonderland plný kostýmů, show, dekorací a atmosféry. Kostým povinný.",
+    "location": {
+      "@type": "Place",
+      "name": "Lucerna – Velký sál",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Štěpánská 61",
+        "addressLocality": "Praha 1",
+        "postalCode": "110 00",
+        "addressCountry": "CZ"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Czech management group s.r.o.",
+      "url": "https://wonderlandhalloween.cz"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://wonderlandhalloween.cz/#vstupenky",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "CZK"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ================= HEADER (desktop sticky) ================= -->
+  <header class="site-header" id="siteHeader">
+    <a class="header-logo" href="#top" aria-label="Wonderland Halloween">
+      <img src="img/title-600.webp?v=2" alt="Wonderland Halloween" width="300" height="76">
+    </a>
+    <nav class="header-nav" aria-label="Hlavní navigace">
+      <a href="#vstupenky" data-i18n="nav.tickets">Vstupenky</a>
+      <a href="#program" data-i18n="nav.program">Program</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+    </nav>
+    <div class="header-right">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">EN</button>
+      <a href="#" class="btn btn-primary btn-header js-buy" data-tier="header" data-i18n="cta.buy">Koupit lístek</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní menu">
+    <a href="#vstupenky" data-i18n="nav.tickets">Vstupenky</a>
+    <a href="#program" data-i18n="nav.program">Program</a>
+    <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+    <button class="lang-switch lang-switch-mobile" id="langSwitchMobile">EN / CZ</button>
+  </nav>
+
+  <main id="top">
+
+  <!-- ================= 1) HERO ================= -->
+  <section class="hero" id="hero">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="img/hero-poster-mobile.jpg" aria-hidden="true"></video>
+    <canvas class="hero-embers" id="embers" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1 class="sr-only">Wonderland Halloween 2026 — Lucerna Praha, 30. 10. 2026</h1>
+      <p class="hero-kicker reveal" data-i18n="hero.kicker">Největší halloween v srdci Evropy</p>
+      <img class="hero-title reveal" src="img/title-1100.webp?v=2" alt="Wonderland Halloween" width="1100" height="278" fetchpriority="high">
+      <p class="hero-date reveal">
+        <span class="hero-date-strong" data-i18n="hero.date">PÁ 30. 10. 2026</span>
+        <span class="hero-date-sep">✦</span>
+        <span data-i18n="hero.venue">Lucerna – Velký sál, Praha</span>
+      </p>
+      <p class="hero-hook reveal" data-i18n="hero.hook">Jedna noc, tisíce masek, velkolepá show. Tohle je pražský Halloween.</p>
+
+      <div class="countdown reveal" id="countdown" role="timer" aria-label="Odpočet do akce">
+        <div class="cd-box"><span class="cd-num" id="cdDays">—</span><span class="cd-label" data-i18n="cd.days">dní</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><span class="cd-num" id="cdHours">—</span><span class="cd-label" data-i18n="cd.hours">hodin</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><span class="cd-num" id="cdMins">—</span><span class="cd-label" data-i18n="cd.mins">minut</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><span class="cd-num" id="cdSecs">—</span><span class="cd-label" data-i18n="cd.secs">vteřin</span></div>
+      </div>
+
+      <div class="hero-ctas reveal">
+        <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="hero" data-i18n="cta.buy">Koupit lístek</a>
+        <a href="#program" class="btn btn-ghost btn-lg" data-i18n="cta.program">Zobrazit program</a>
+      </div>
+      <p class="hero-micro reveal" data-i18n="hero.micro">Kostým je povinný. Wonderland začíná už před vstupem.</p>
+    </div>
+    <a class="hero-scroll" href="#rychle-info" aria-label="Scrollovat dolů"><span></span></a>
+  </section>
+
+  <!-- ================= 2) QUICK INFO ================= -->
+  <section class="quick-info" id="rychle-info">
+    <div class="container qi-grid">
+      <div class="qi-box reveal">
+        <div class="qi-icon">🗓</div>
+        <div class="qi-label" data-i18n="qi.date.l">Datum</div>
+        <div class="qi-value" data-i18n="qi.date.v">Pátek 30. 10. 2026</div>
+      </div>
+      <div class="qi-box reveal">
+        <div class="qi-icon">📍</div>
+        <div class="qi-label" data-i18n="qi.place.l">Místo</div>
+        <div class="qi-value" data-i18n="qi.place.v">Lucerna – Velký sál, Praha</div>
+      </div>
+      <div class="qi-box reveal">
+        <div class="qi-icon">🎭</div>
+        <div class="qi-label" data-i18n="qi.dress.l">Dress code</div>
+        <div class="qi-value" data-i18n="qi.dress.v">Kostým povinný</div>
+      </div>
+      <div class="qi-box reveal">
+        <div class="qi-icon">🔥</div>
+        <div class="qi-label" data-i18n="qi.exp.l">Zážitek</div>
+        <div class="qi-value" data-i18n="qi.exp.v">Show · herci · dekorace · soutěž masek · VIP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3) PROČ WONDERLAND ================= -->
+  <section class="why" id="proc">
+    <div class="why-bg">
+      <img src="img/hero-crowd-1600.webp" srcset="img/hero-crowd-800.webp 800w, img/hero-crowd-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="container why-inner">
+      <h2 class="section-title reveal" data-i18n="why.title">Tohle není obyčejná párty.<br>Tohle je Wonderland.</h2>
+      <p class="section-lead reveal" data-i18n="why.lead">V Praze je jedna noc, na kterou se čeká celý rok. Velký sál Lucerny se promění v temný svět plný dekorací, masek, světel, hudby, herců a show. Všechno ostatní je jen kompromis.</p>
+      <ul class="why-grid">
+        <li class="reveal"><span class="why-ico">👑</span><span data-i18n="why.b1">Největší kostýmová Halloween show v Praze</span></li>
+        <li class="reveal"><span class="why-ico">🏛</span><span data-i18n="why.b2">Legendární pražská Lucerna</span></li>
+        <li class="reveal"><span class="why-ico">🕰</span><span data-i18n="why.b3">Produkce s historií od roku 2010</span></li>
+        <li class="reveal"><span class="why-ico">🎭</span><span data-i18n="why.b4">Tisíce lidí v kostýmech na jednom místě</span></li>
+        <li class="reveal"><span class="why-ico">🔥</span><span data-i18n="why.b5">Velkolepá halloweenská show</span></li>
+        <li class="reveal"><span class="why-ico">🏆</span><span data-i18n="why.b6">Soutěž o nejlepší masku</span></li>
+        <li class="reveal"><span class="why-ico">🥂</span><span data-i18n="why.b7">VIP zóny a rezervace stolů</span></li>
+        <li class="reveal"><span class="why-ico">📸</span><span data-i18n="why.b8">Fotogenické dekorace a tematické scény</span></li>
+      </ul>
+      <div class="center reveal">
+        <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="why" data-i18n="cta.wanna">Chci být u toho</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4) VSTUPENKY ================= -->
+  <section class="tickets" id="vstupenky">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="tix.title">Zajisti si vstupenku, než zdraží</h2>
+      <div class="wave-banner reveal">
+        <span class="wave-pulse" aria-hidden="true"></span>
+        <span data-i18n="tix.wave">Právě běží 1. vlna — nejnižší cena. Platí do vyprodání. Pak cena roste.</span>
+      </div>
+      <div class="wave-progress reveal" id="waveProgress" hidden>
+        <div class="wave-progress-bar"><div class="wave-progress-fill" id="waveFill"></div></div>
+        <div class="wave-progress-label" id="waveLabel"></div>
+      </div>
+
+      <div class="tix-grid">
+        <!-- STANDARD -->
+        <article class="tix-card reveal">
+          <h3 class="tix-name">Standard</h3>
+          <p class="tix-tag" data-i18n="tix.std.tag">Pro ty, kdo chtějí být přímo uprostřed dění.</p>
+          <div class="tix-price"><span class="tix-price-num" data-price="standard">—</span><span class="tix-price-cur">Kč</span></div>
+          <div class="tix-wave-note" data-i18n="tix.wavenote">1. vlna — nejnižší cena</div>
+          <ul class="tix-list">
+            <li data-i18n="tix.std.f1">Vstup na Wonderland Halloween 2026</li>
+            <li data-i18n="tix.std.f2">Přístup do hlavního sálu</li>
+            <li data-i18n="tix.std.f3">Halloweenská show</li>
+            <li data-i18n="tix.std.f4">Účast v soutěži masek</li>
+            <li data-i18n="tix.std.f5">Přístup k fotopointům a programu</li>
+          </ul>
+          <a href="#" class="btn btn-outline btn-block js-buy" data-tier="standard" data-i18n="tix.std.cta">Koupit Standard</a>
+        </article>
+
+        <!-- VIP -->
+        <article class="tix-card tix-card-vip reveal">
+          <div class="tix-badge" data-i18n="tix.vip.badge">Nejoblíbenější</div>
+          <h3 class="tix-name">VIP</h3>
+          <p class="tix-tag" data-i18n="tix.vip.tag">Lepší komfort, výhled a prémiový zážitek.</p>
+          <div class="tix-price"><span class="tix-price-num" data-price="vip">—</span><span class="tix-price-cur">Kč</span></div>
+          <div class="tix-wave-note" data-i18n="tix.wavenote">1. vlna — nejnižší cena</div>
+          <ul class="tix-list">
+            <li data-i18n="tix.vip.f1">Vše ze Standardu</li>
+            <li data-i18n="tix.vip.f2">Vstup do VIP prostoru</li>
+            <li data-i18n="tix.vip.f3">Lepší výhled na hlavní stage</li>
+            <li data-i18n="tix.vip.f4">Vlastní bar / rychlejší servis</li>
+            <li data-i18n="tix.vip.f5">Rychlejší VIP vstup</li>
+            <li data-i18n="tix.vip.f6">VIP atmosféra a dekorace</li>
+          </ul>
+          <a href="#" class="btn btn-primary btn-block js-buy" data-tier="vip" data-i18n="tix.vip.cta">Koupit VIP</a>
+        </article>
+
+        <!-- VIP STOLY -->
+        <article class="tix-card reveal">
+          <h3 class="tix-name" data-i18n="tix.tab.name">VIP stoly</h3>
+          <p class="tix-tag" data-i18n="tix.tab.tag">Pro oslavy, firmy a skupiny přátel.</p>
+          <div class="tix-price"><span class="tix-price-from" data-i18n="tix.from">od</span> <span class="tix-price-num" data-price="table">—</span><span class="tix-price-cur">Kč</span></div>
+          <div class="tix-wave-note" data-i18n="tix.tab.note">Omezený počet stolů</div>
+          <ul class="tix-list">
+            <li data-i18n="tix.tab.f1">Rezervovaný stůl v patře</li>
+            <li data-i18n="tix.tab.f2">Tematická výzdoba</li>
+            <li data-i18n="tix.tab.f3">Servis u stolu</li>
+            <li data-i18n="tix.tab.f4">Prémiový výhled na hlavní pódium</li>
+            <li data-i18n="tix.tab.f5">Ideální na narozeniny a firemní akce</li>
+          </ul>
+          <a href="#vip-stul" class="btn btn-outline btn-block" data-i18n="tix.tab.cta">Rezervovat stůl</a>
+        </article>
+      </div>
+
+      <div class="tix-trust reveal">
+        <span data-i18n="trust.official">✓ Oficiální předprodej</span>
+        <span data-i18n="trust.secure">✓ Bezpečná platba</span>
+        <span data-i18n="trust.email">✓ Vstupenka ihned do e-mailu</span>
+        <span data-i18n="trust.card">✓ Platba kartou online</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5) EXPERIENCE ================= -->
+  <section class="experience" id="zazitek">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="exp.title">Vstup do světa Wonderlandu</h2>
+      <p class="section-lead reveal" data-i18n="exp.lead">Neprodáváme párty. Otevíráme bránu do jiného světa — na jednu noc v roce.</p>
+
+      <div class="exp-grid">
+        <figure class="exp-tile exp-tile-wide reveal">
+          <img src="img/laser-web-800.webp" srcset="img/laser-web-800.webp 800w, img/laser-web-1600.webp 1600w" sizes="(min-width:768px) 66vw, 100vw" alt="Laserová show nad zaplněným sálem Lucerny" loading="lazy" decoding="async">
+          <figcaption><strong data-i18n="exp.show.t">Show</strong><span data-i18n="exp.show.d">Hlavní večerní show: hudba, světla, performance, kostýmy.</span></figcaption>
+        </figure>
+        <figure class="exp-tile reveal">
+          <img src="img/costume-goat-450.webp" srcset="img/costume-goat-450.webp 450w, img/costume-goat-900.webp 900w" sizes="(min-width:768px) 33vw, 100vw" alt="Návštěvník v propracované masce s lebkou" loading="lazy" decoding="async">
+          <figcaption><strong data-i18n="exp.cost.t">Kostýmy</strong><span data-i18n="exp.cost.d">Wonderland tvoří lidé. Čím lepší kostým, tím silnější zážitek.</span></figcaption>
+        </figure>
+        <figure class="exp-tile reveal">
+          <img src="img/decor-reaper-450.webp" srcset="img/decor-reaper-450.webp 450w, img/decor-reaper-900.webp 900w" sizes="(min-width:768px) 33vw, 100vw" alt="Halloweenská dekorace se smrtkou a dýní" loading="lazy" decoding="async">
+          <figcaption><strong data-i18n="exp.deco.t">Dekorace</strong><span data-i18n="exp.deco.d">Lucerna jako temný pražský Wonderland: gotika, dýně, oheň.</span></figcaption>
+        </figure>
+        <figure class="exp-tile reveal">
+          <img src="img/actor-pennywise-600.webp" srcset="img/actor-pennywise-600.webp 600w, img/actor-pennywise-1200.webp 1200w" sizes="(min-width:768px) 33vw, 100vw" alt="Herec v kostýmu klauna s balónky na molu" loading="lazy" decoding="async">
+          <figcaption><strong data-i18n="exp.act.t">Herci a performance</strong><span data-i18n="exp.act.d">Postavy, které tě vtáhnou přímo do děje.</span></figcaption>
+        </figure>
+        <figure class="exp-tile exp-tile-wide reveal">
+          <img src="img/photowall-450.webp" srcset="img/photowall-450.webp 450w, img/photowall-900.webp 900w" sizes="(min-width:768px) 66vw, 100vw" alt="Návštěvníci v kostýmech u zlaté fotostěny Wonderland" loading="lazy" decoding="async">
+          <figcaption><strong data-i18n="exp.photo.t">Fotopointy</strong><span data-i18n="exp.photo.d">Místa na silné fotky a reels do stories.</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="center reveal">
+        <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="experience" data-i18n="cta.buy">Koupit lístek</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6) PROGRAM ================= -->
+  <section class="program" id="program">
+    <div class="container program-inner">
+      <div class="program-text">
+        <h2 class="section-title reveal" data-i18n="prog.title">Program večera</h2>
+        <ol class="timeline">
+          <li class="reveal"><span class="tl-time">21:00</span><span class="tl-label" data-i18n="prog.i1">Otevření Lucerny — vstup do Wonderlandu</span></li>
+          <li class="reveal"><span class="tl-time">22:00</span><span class="tl-label" data-i18n="prog.i2">Start hlavní show</span></li>
+          <li class="reveal"><span class="tl-time">23:30</span><span class="tl-label" data-i18n="prog.i3">Soutěž masek — výběr finalistů</span></li>
+          <li class="reveal"><span class="tl-time">00:30</span><span class="tl-label" data-i18n="prog.i4">Hlavní show moment</span></li>
+          <li class="reveal"><span class="tl-time">01:30</span><span class="tl-label" data-i18n="prog.i5">Vyhlášení nejlepší masky</span></li>
+          <li class="reveal"><span class="tl-time">02:00+</span><span class="tl-label" data-i18n="prog.i6">Afterparty do rána</span></li>
+        </ol>
+        <p class="program-note reveal" data-i18n="prog.note">Program se může na místě mírně měnit — show si režíruje Wonderland.</p>
+        <a href="#" class="btn btn-primary reveal js-buy" data-tier="program" data-i18n="cta.ticket">Koupit vstupenku</a>
+      </div>
+      <div class="program-img reveal">
+        <img src="img/show-dancer-450.webp" srcset="img/show-dancer-450.webp 450w, img/show-dancer-900.webp 900w" sizes="(min-width:900px) 38vw, 80vw" alt="Tanečnice v péřové koruně na pódiu" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7) SOUTĚŽ MASEK ================= -->
+  <section class="contest" id="soutez">
+    <div class="contest-bg">
+      <img src="img/contest-winners-1200.webp" srcset="img/contest-winners-600.webp 600w, img/contest-winners-1200.webp 1200w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="container contest-inner">
+      <h2 class="section-title reveal" data-i18n="cont.title">Soutěž o nejlepší masku</h2>
+      <p class="section-lead reveal" data-i18n="cont.lead">Nejlepší masky večera vystoupí na molo před celou Lucernou. Porota hodnotí čtyři věci:</p>
+      <div class="contest-chips reveal">
+        <span data-i18n="cont.c1">Originalita</span>
+        <span data-i18n="cont.c2">Zpracování</span>
+        <span data-i18n="cont.c3">Show efekt</span>
+        <span data-i18n="cont.c4">Celkový dojem</span>
+      </div>
+      <div class="center reveal">
+        <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="contest" data-i18n="cont.cta">Přijdu v masce</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8) KOSTÝMY ================= -->
+  <section class="costumes" id="kostymy">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="cos.title">Bez kostýmu to není Wonderland</h2>
+      <p class="section-lead reveal" data-i18n="cos.lead">Kostým je tvoje vstupenka do atmosféry. Démon, anděl, upír, čarodějka, mrtvá nevěsta, filmová postava, temný elegán — čím dál zajdeš, tím víc si večer užiješ.</p>
+      <div class="cos-grid">
+        <img class="reveal" src="img/costume-skull-450.webp" srcset="img/costume-skull-450.webp 450w, img/costume-skull-900.webp 900w" sizes="(min-width:768px) 25vw, 50vw" alt="Maska Dia de los Muertos se sombrerem" loading="lazy" decoding="async">
+        <img class="reveal" src="img/costume-teeth-450.webp" srcset="img/costume-teeth-450.webp 450w, img/costume-teeth-900.webp 900w" sizes="(min-width:768px) 25vw, 50vw" alt="Hororová maska se špičatými zuby" loading="lazy" decoding="async">
+        <img class="reveal" src="img/brides-450.webp" srcset="img/brides-450.webp 450w, img/brides-900.webp 900w" sizes="(min-width:768px) 25vw, 50vw" alt="Dvě upíří nevěsty v červené" loading="lazy" decoding="async">
+        <img class="reveal" src="img/costume-devils-450.webp" srcset="img/costume-devils-450.webp 450w, img/costume-devils-900.webp 900w" sizes="(min-width:768px) 25vw, 50vw" alt="Trojice démonů s rohy v červeném bodypaintu" loading="lazy" decoding="async">
+      </div>
+      <div class="cos-mandatory reveal">
+        <strong data-i18n="cos.must.t">Kostým je povinný.</strong>
+        <span data-i18n="cos.must.d">Bez kostýmu tě do Wonderlandu pustit nemůžeme. Stačí i temná elegance s maskou — ale přijď v roli.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9) HISTORIE / GALERIE ================= -->
+  <section class="history" id="historie">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="hist.title">Od roku 2010 tvoříme největší Halloween v Praze</h2>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-num" data-count="16">0</span><span class="stat-label" data-i18n="hist.s1">ročníků</span></div>
+        <div class="stat"><span class="stat-num"><span data-count="2500">0</span>+</span><span class="stat-label" data-i18n="hist.s2">kapacita Velkého sálu</span></div>
+        <div class="stat"><span class="stat-num"><span data-count="350">0</span>+</span><span class="stat-label" data-i18n="hist.s3">influencerů u toho</span></div>
+        <div class="stat"><span class="stat-num" data-i18n="hist.s4n">tisíce</span><span class="stat-label" data-i18n="hist.s4">masek každý rok</span></div>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <figure class="g-item reveal" data-year="2025"><img src="img/crowd-red-800.webp" alt="Zaplněný Velký sál Lucerny v červeném světle, 2025" loading="lazy" decoding="async"><figcaption>2025</figcaption></figure>
+        <figure class="g-item reveal" data-year="2025"><img src="img/winners-hall-600.webp" alt="Vítězové soutěže masek na molu, 2025" loading="lazy" decoding="async"><figcaption>2025</figcaption></figure>
+        <figure class="g-item reveal" data-year="2025"><img src="img/catwalk-600.webp" alt="Molo nad zaplněným sálem, 2025" loading="lazy" decoding="async"><figcaption>2025</figcaption></figure>
+        <figure class="g-item reveal" data-year="2025"><img src="img/witch-balcony-600.webp" alt="Čarodějnice a kostlivec na balkoně nad sálem, 2025" loading="lazy" decoding="async"><figcaption>2025</figcaption></figure>
+        <figure class="g-item reveal" data-year="2024"><img src="img/dj-ballroom-2024-600.webp" alt="DJ nad zaplněným sálem, 2024" loading="lazy" decoding="async"><figcaption>2024</figcaption></figure>
+        <figure class="g-item reveal" data-year="2024"><img src="img/hall-fire-2024-800.webp" alt="Ohnivá show nad plným sálem, 2024" loading="lazy" decoding="async"><figcaption>2024</figcaption></figure>
+        <figure class="g-item reveal" data-year="2024"><img src="img/couple-balcony-600.webp" alt="Maskovaný pár na balkoně nad zlatým sálem, 2024" loading="lazy" decoding="async"><figcaption>2024</figcaption></figure>
+        <figure class="g-item reveal" data-year="2024"><img src="img/vip-box-450.webp" alt="VIP box s výhledem na sál, 2024" loading="lazy" decoding="async"><figcaption>2024</figcaption></figure>
+        <figure class="g-item reveal" data-year="2010–2023"><img src="img/hall-history-600.webp" alt="Zaplněný dvoupatrový sál z dřívějších ročníků" loading="lazy" decoding="async"><figcaption>2010–2023</figcaption></figure>
+        <figure class="g-item reveal" data-year="2010–2023"><img src="img/gatsby-450.webp" alt="Návštěvnice v gatsby kostýmu vedle smrtky" loading="lazy" decoding="async"><figcaption>2010–2023</figcaption></figure>
+        <figure class="g-item reveal" data-year="2010–2023"><img src="img/crowd-purple-450.webp" alt="Dav v kostýmech pod fialovými lasery" loading="lazy" decoding="async"><figcaption>2010–2023</figcaption></figure>
+        <figure class="g-item reveal" data-year="2010–2023"><img src="img/actor-fire-450.webp" alt="Ohnivá performance před vstupem" loading="lazy" decoding="async"><figcaption>2010–2023</figcaption></figure>
+      </div>
+
+      <div class="center reveal">
+        <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="history" data-i18n="cta.join">Přidej se k nim letos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10) LUCERNA ================= -->
+  <section class="venue" id="lucerna">
+    <div class="container venue-inner">
+      <div class="venue-text">
+        <h2 class="section-title reveal" data-i18n="ven.title">Legendární Lucerna. Temný Halloween v srdci Prahy.</h2>
+        <p class="reveal" data-i18n="ven.lead">Velký sál pražské Lucerny — balkony, zlato, sto let historie. Pár kroků od Václavského náměstí, uprostřed města. Na jednu noc se z něj stane brána do Wonderlandu.</p>
+        <address class="venue-address reveal">
+          <strong>Lucerna – Velký sál</strong><br>
+          Štěpánská 61, 110 00 Praha 1<br>
+          <span data-i18n="ven.metro">Metro A/B Můstek · 3 minuty pěšky</span>
+        </address>
+        <button class="btn btn-outline reveal" id="loadMap" data-i18n="ven.map">Zobrazit mapu</button>
+        <div class="venue-map" id="mapWrap" hidden></div>
+      </div>
+      <div class="venue-img reveal">
+        <img src="img/laser-web-800.webp" alt="Velký sál Lucerny během show" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VIP STŮL FORM ================= -->
+  <section class="vip-form-sec" id="vip-stul">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="vipf.title">Rezervace VIP stolu</h2>
+      <p class="section-lead reveal" data-i18n="vipf.lead">Narozeniny, firemní večer nebo parta přátel? Nech nám kontakt, ozveme se s nabídkou stolů.</p>
+      <form class="vip-form reveal" id="vipForm">
+        <div class="form-row">
+          <input type="text" name="name" required data-i18n-attr="placeholder:vipf.name" placeholder="Jméno a příjmení" autocomplete="name">
+          <input type="email" name="email" required data-i18n-attr="placeholder:vipf.email" placeholder="E-mail" autocomplete="email">
+        </div>
+        <div class="form-row">
+          <input type="tel" name="phone" required data-i18n-attr="placeholder:vipf.phone" placeholder="Telefon" autocomplete="tel">
+          <input type="number" name="people" min="2" max="30" data-i18n-attr="placeholder:vipf.people" placeholder="Počet osob">
+        </div>
+        <textarea name="note" rows="3" data-i18n-attr="placeholder:vipf.note" placeholder="Poznámka (příležitost, preferovaný stůl…)"></textarea>
+        <button type="submit" class="btn btn-primary btn-lg" data-i18n="vipf.cta">Poptat VIP stůl</button>
+        <p class="form-status" id="vipFormStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= 11) PARTNEŘI ================= -->
+  <section class="partners" id="partneri">
+    <div class="container">
+      <h2 class="section-title-sm reveal" data-i18n="part.title">Partneři</h2>
+      <div class="partners-row reveal">
+        <img src="img/logo-mr.webp" alt="Mafia Records" loading="lazy" decoding="async" height="56">
+        <img src="img/logo-czparties.webp" alt="CZ Parties" loading="lazy" decoding="async" height="56">
+        <img src="img/logo-fear.webp" alt="Fear" loading="lazy" decoding="async" height="56">
+      </div>
+      <div class="partners-cta reveal">
+        <p data-i18n="part.pitch">Spojte svou značku s nocí, o které mluví celá Praha. Sampling, LCD branding, VIP experience, 350+ influencerů.</p>
+        <a class="btn btn-outline js-partner-mail" href="#" data-i18n="part.cta">Chci partnerství</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 12) FAQ ================= -->
+  <section class="faq" id="faq">
+    <div class="container container-narrow">
+      <h2 class="section-title reveal" data-i18n="faq.title">Časté otázky</h2>
+      <div class="faq-list">
+        <details class="reveal"><summary data-i18n="faq.q1">Musím mít kostým?</summary><p data-i18n="faq.a1">Ano, kostým je povinný. Wonderland tvoří lidé v maskách — a ty budeš jedním z nich. Stačí i temná elegance s maskou.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q2">Kdy akce začíná?</summary><p data-i18n="faq.a2">Příchod od 21:00, hlavní show začíná ve 22:00. Doporučujeme přijít dřív — fronty na vstupu bývají dlouhé.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q3">Kde se akce koná?</summary><p data-i18n="faq.a3">Lucerna – Velký sál, Štěpánská 61, Praha 1. Pár kroků od Václavského náměstí, metro Můstek.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q4">Budou vstupenky na místě?</summary><p data-i18n="faq.a4">Jen pokud nebude vyprodáno. Online předem je levnější a máš rychlejší vstup. Minulé ročníky se vyprodaly.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q5">Můžu rezervovat VIP stůl?</summary><p data-i18n="faq.a5">Ano — VIP stoly v patře s obsluhou a výhledem na pódium jsou ideální pro skupiny, oslavy a firmy. Rezervace přes formulář výše.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q6">Bude soutěž masek?</summary><p data-i18n="faq.a6">Ano. Výběr finalistů proběhne během večera, vyhlášení nejlepší masky v 01:30 na hlavním pódiu.</p></details>
+        <details class="reveal"><summary data-i18n="faq.q7">Je akce vhodná pro firmy?</summary><p data-i18n="faq.a7">Ano — VIP stoly, skupinové vstupenky i branding. Napište nám na partnerský kontakt v patičce.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LEAD CAPTURE ================= -->
+  <section class="lead" id="lead">
+    <div class="container container-narrow center">
+      <h2 class="section-title-sm reveal" data-i18n="lead.title">Nechceš koupit teď? Nezmeškej další vlnu.</h2>
+      <p class="reveal" data-i18n="lead.lead">Dej nám e-mail a dáme ti vědět, až spustíme další vlnu vstupenek nebo odhalíme lineup.</p>
+      <form class="lead-form reveal" id="leadForm">
+        <input type="email" name="email" required data-i18n-attr="placeholder:lead.ph" placeholder="Tvůj e-mail" autocomplete="email">
+        <button type="submit" class="btn btn-primary" data-i18n="lead.cta">Hlídat pro mě</button>
+      </form>
+      <p class="form-status" id="leadFormStatus" role="status"></p>
+      <p class="lead-gdpr reveal" data-i18n="lead.gdpr">Odesláním souhlasíš se zpracováním e-mailu pro novinky k akci. Odhlásit se můžeš kdykoliv.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ================= 13) FOOTER ================= -->
+  <footer class="footer" id="kontakt">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img class="footer-logo" src="img/title-600.webp?v=2" alt="Wonderland Halloween" width="240" height="61" loading="lazy">
+          <p class="footer-claim" data-i18n="foot.claim">Největší kostýmová Halloween show v Praze. 30. 10. 2026, Lucerna – Velký sál.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/wonderlandhalloween.cz/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+            <a href="https://www.tiktok.com/@wonderlandhalloween.cz" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
+            <a href="https://www.facebook.com/wonderlandhalloween.cz" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="foot.org">Pořadatel</h3>
+          <p>
+            Czech management group s.r.o.<br>
+            IČO: 21611327<br>
+            Příčná 1892/4, Nové Město<br>
+            110 00 Praha 1
+          </p>
+          <p><a class="js-partner-mail" href="#">info@wonderlandhalloween.cz</a></p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="foot.legal">Právní</h3>
+          <ul>
+            <li><a href="#" data-i18n="foot.terms">Obchodní podmínky</a></li>
+            <li><a href="#" data-i18n="foot.privacy">Ochrana osobních údajů (GDPR)</a></li>
+            <li><a href="#" id="cookieSettings" data-i18n="foot.cookies">Nastavení cookies</a></li>
+          </ul>
+          <p class="footer-trust">
+            <span data-i18n="trust.official">✓ Oficiální předprodej</span><br>
+            <span data-i18n="trust.secure">✓ Bezpečná platba</span><br>
+            <span data-i18n="trust.email">✓ Vstupenka ihned do e-mailu</span>
+          </p>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 Czech management group s.r.o. · Wonderland Halloween</p>
+    </div>
+  </footer>
+
+  <!-- ================= STICKY MOBILE CTA BAR ================= -->
+  <div class="sticky-bar" id="stickyBar">
+    <a href="#program" class="btn btn-ghost" data-i18n="nav.program">Program</a>
+    <a href="#" class="btn btn-primary js-buy" data-tier="sticky" data-i18n="cta.buy">Koupit lístek</a>
+  </div>
+
+  <!-- ================= EXIT INTENT MODAL ================= -->
+  <div class="modal" id="exitModal" hidden role="dialog" aria-modal="true" aria-labelledby="exitTitle">
+    <div class="modal-box">
+      <button class="modal-close" id="exitClose" aria-label="Zavřít">×</button>
+      <h3 id="exitTitle" data-i18n="exit.title">Než odejdeš…</h3>
+      <p data-i18n="exit.text">1. vlna za nejnižší cenu pořád běží. Až se vyprodá, cena vzroste — a už neklesne.</p>
+      <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="exit" data-i18n="exit.cta">Než zdraží — kup teď</a>
+    </div>
+  </div>
+
+  <!-- ================= COOKIE BANNER ================= -->
+  <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-label="Cookies">
+    <p data-i18n="cook.text">Používáme cookies pro měření návštěvnosti a marketing. Díky nim víme, jak web zlepšovat.</p>
+    <div class="cookie-actions">
+      <button class="btn btn-primary" id="cookieAccept" data-i18n="cook.accept">Přijmout vše</button>
+      <button class="btn btn-ghost" id="cookieDeny" data-i18n="cook.deny">Jen nezbytné</button>
+    </div>
+  </div>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Zavřít">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
