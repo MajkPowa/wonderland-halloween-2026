@@ -1686,3 +1686,7 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 .tix-fire { top: -14%; height: 40%; }
 .tix-fire-b { top: -16%; height: 43%; }
 .tix-fire-c { top: -13%; }
+/* plameny jen na mobilu — na desktopu prosvital ram animace */
+@media (min-width: 900px) {
+  .tix-fire { display: none !important; }
+}
