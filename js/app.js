@@ -23,6 +23,7 @@ const CONFIG = {
   waveName: { cs: '1. vlna', en: 'Wave 1' },
 
   // --- Tracking (vyplňte ID → načte se po souhlasu s cookies) ---
+  ga4Id: 'G-X566159YZW', // Google Analytics 4 measurement ID
   gtmId: '',        // např. 'GTM-XXXXXXX'
   metaPixelId: '',  // např. '1234567890'
   tiktokPixelId: '',// např. 'ABCDEFGHIJ'
@@ -271,10 +272,24 @@ function loadTracking() {
   if (trackingLoaded) return;
   trackingLoaded = true;
 
-  // Firebase / Google Analytics — aktivuje se automaticky, jakmile je
-  // v konzoli Firebase zapnutá Google Analytics (objeví se measurementId).
+  // Google Analytics 4 (gtag.js) — hlavní analytika, funguje na jakékoli doméně.
+  if (CONFIG.ga4Id) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    const g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + CONFIG.ga4Id;
+    document.head.appendChild(g);
+    gtag('js', new Date());
+    gtag('config', CONFIG.ga4Id, { anonymize_ip: true });
+    gtag('event', 'view_event_page', { event_name: 'Wonderland Halloween 2026' });
+  }
+
+  // Firebase Analytics — volitelná alternativa, aktivuje se jen pokud je
+  // v konzoli Firebase zapnutá GA a zároveň není nastaven CONFIG.ga4Id výše.
   (async () => {
     try {
+      if (CONFIG.ga4Id) return; // GA4 už řešíme přes gtag výše
       let cfg = FIREBASE_CONFIG;
       try {
         const r = await fetch('/__/firebase/init.json', { signal: AbortSignal.timeout(2500) });
@@ -328,6 +343,7 @@ function trackInitiateCheckout(tier) {
   try {
     if (window.fbq) fbq('track', 'InitiateCheckout', { content_category: tier });
     if (window.ttq) ttq.track('InitiateCheckout', { content_category: tier });
+    if (window.gtag) gtag('event', 'begin_checkout', { item_category: tier });
     if (window.dataLayer) dataLayer.push({ event: 'begin_checkout', tier });
   } catch (e) { /* tracking must never break checkout */ }
 }
@@ -869,6 +885,7 @@ async function submitLead(type, data, statusEl, form) {
     form.reset();
     if (window.fbq) fbq('track', 'Lead');
     if (window.ttq) ttq.track('SubmitForm');
+    if (window.gtag) gtag('event', 'generate_lead', { form: type });
     if (window.dataLayer) dataLayer.push({ event: type === 'vip-table' ? 'vip_request' : 'lead_signup' });
     return;
   } catch (e) { /* Firestore nedostupný → zkusíme endpoint / mailto */ }
