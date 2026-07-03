@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /functions/
+
+# AI/LLM crawlers povoleny (event discovery)
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
 
 Sitemap: https://wonderlandhalloween.cz/sitemap.xml
