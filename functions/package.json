@@ -1,0 +1,11 @@
+{
+  "name": "wonderland-functions",
+  "description": "Cloud Functions pro Wonderland Halloween 2026",
+  "engines": { "node": "20" },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.1.0"
+  },
+  "private": true
+}

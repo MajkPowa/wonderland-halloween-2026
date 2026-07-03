@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function validEmail(e) {
+      return e is string && e.size() >= 5 && e.size() <= 200 && e.matches('.+@.+[.].+');
+    }
+
+    // Newsletter / hlídání vstupenek — pouze vytvoření, žádné čtení z klienta
+    match /leads/{id} {
+      allow create: if validEmail(request.resource.data.email)
+        && request.resource.data.type == 'newsletter'
+        && request.resource.data.lang in ['cs', 'en']
+        && request.resource.data.ts == request.time
+        && request.resource.data.keys().hasOnly(['email', 'type', 'lang', 'page', 'ts'])
+        && (!('page' in request.resource.data)
+            || (request.resource.data.page is string && request.resource.data.page.size() < 500));
+      allow read, update, delete: if false;
+    }
+
+    // Poptávky VIP stolů — pouze vytvoření, žádné čtení z klienta
+    match /vipRequests/{id} {
+      allow create: if validEmail(request.resource.data.email)
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 200
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 6
+        && request.resource.data.phone.size() <= 40
+        && request.resource.data.lang in ['cs', 'en']
+        && request.resource.data.ts == request.time
+        && request.resource.data.keys().hasOnly(['name', 'email', 'phone', 'people', 'note', 'lang', 'page', 'ts'])
+        && (!('note' in request.resource.data)
+            || (request.resource.data.note is string && request.resource.data.note.size() <= 2000))
+        && (!('people' in request.resource.data)
+            || (request.resource.data.people is string && request.resource.data.people.size() <= 10))
+        && (!('page' in request.resource.data)
+            || (request.resource.data.page is string && request.resource.data.page.size() < 500));
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

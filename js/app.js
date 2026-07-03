@@ -37,6 +37,32 @@ const CONFIG = {
   eventDate: '2026-10-30T21:00:00+01:00',
 };
 
+/* Firebase (projekt wonderland-halloween-2026) — formuláře ukládají do
+   Firestore, analytika se aktivuje po zapnutí Google Analytics v konzoli. */
+const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyA1rkd9EDOzEjij5CBAW1CBB_-Zn133U24',
+  authDomain: 'wonderland-halloween-2026.firebaseapp.com',
+  projectId: 'wonderland-halloween-2026',
+  storageBucket: 'wonderland-halloween-2026.firebasestorage.app',
+  messagingSenderId: '572457591359',
+  appId: '1:572457591359:web:20a863bfa222d391aa8e8a',
+};
+
+let _fbPromise = null;
+function firebaseDb() {
+  if (!_fbPromise) {
+    _fbPromise = (async () => {
+      const [appMod, fsMod] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js'),
+      ]);
+      const app = appMod.getApps().length ? appMod.getApp() : appMod.initializeApp(FIREBASE_CONFIG);
+      return { fs: fsMod, db: fsMod.getFirestore(app) };
+    })();
+  }
+  return _fbPromise;
+}
+
 /* ============================================================
    I18N — CZ výchozí (v HTML), EN slovník zde
    ============================================================ */
@@ -244,6 +270,26 @@ let trackingLoaded = false;
 function loadTracking() {
   if (trackingLoaded) return;
   trackingLoaded = true;
+
+  // Firebase / Google Analytics — aktivuje se automaticky, jakmile je
+  // v konzoli Firebase zapnutá Google Analytics (objeví se measurementId).
+  (async () => {
+    try {
+      let cfg = FIREBASE_CONFIG;
+      try {
+        const r = await fetch('/__/firebase/init.json', { signal: AbortSignal.timeout(2500) });
+        if (r.ok) cfg = await r.json();
+      } catch (e) { /* mimo Firebase Hosting použijeme lokální config */ }
+      if (!cfg.measurementId) return;
+      const [appMod, anMod] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js'),
+      ]);
+      let app;
+      try { app = appMod.getApp('analytics'); } catch (e) { app = appMod.initializeApp(cfg, 'analytics'); }
+      anMod.getAnalytics(app);
+    } catch (e) { /* analytika nesmí rozbít web */ }
+  })();
 
   if (CONFIG.gtmId) {
     window.dataLayer = window.dataLayer || [];
@@ -798,6 +844,35 @@ async function submitLead(type, data, statusEl, form) {
     ok: lang === 'en' ? 'Done! We’ll be in touch. 🎃' : 'Hotovo! Ozveme se ti. 🎃',
     err: lang === 'en' ? 'Something failed — write to us at ' : 'Něco se nepovedlo — napiš nám na ',
   };
+
+  // 1) Primárně: zápis do Firestore (funguje z jakékoli domény)
+  try {
+    const { fs, db } = await firebaseDb();
+    const base = { lang, page: location.href.slice(0, 480), ts: fs.serverTimestamp() };
+    if (type === 'vip-table') {
+      await fs.addDoc(fs.collection(db, 'vipRequests'), {
+        name: String(data.name || '').slice(0, 200),
+        email: String(data.email || '').slice(0, 200),
+        phone: String(data.phone || '').slice(0, 40),
+        people: String(data.people || '').slice(0, 10),
+        note: String(data.note || '').slice(0, 2000),
+        ...base,
+      });
+    } else {
+      await fs.addDoc(fs.collection(db, 'leads'), {
+        email: String(data.email || '').slice(0, 200),
+        type: 'newsletter',
+        ...base,
+      });
+    }
+    statusEl.textContent = msgs.ok;
+    form.reset();
+    if (window.fbq) fbq('track', 'Lead');
+    if (window.ttq) ttq.track('SubmitForm');
+    if (window.dataLayer) dataLayer.push({ event: type === 'vip-table' ? 'vip_request' : 'lead_signup' });
+    return;
+  } catch (e) { /* Firestore nedostupný → zkusíme endpoint / mailto */ }
+
   if (CONFIG.leadEndpoint) {
     try {
       const res = await fetch(CONFIG.leadEndpoint, {

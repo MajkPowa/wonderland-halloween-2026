@@ -2,3 +2,5 @@
 .DS_Store
 Thumbs.db
 video/Header web old.mp4
+functions/node_modules/
+.firebase/
