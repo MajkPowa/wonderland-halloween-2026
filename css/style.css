@@ -1926,3 +1926,11 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 /* plameny se stahuji az po nacteni celeho webu */
 .tix-fire { background-image: none; }
 body.fx-ready .tix-fire { background-image: url('../img/flames.webp'); }
+/* fix: na mobilu plameny prekryvaly banner "1. vlna" — vetsi mezera + kratsi dosah */
+@media (max-width: 899px) {
+  .tickets .tix-grid { margin-top: 7rem; }
+  .tix-fire   { top: -10%; height: 34%; }
+  .tix-fire-b { top: -11%; height: 36%; }
+  .tix-fire-c { top: -10%; }
+  .tix-wrap::before { top: -6px; height: 70px; }
+}
