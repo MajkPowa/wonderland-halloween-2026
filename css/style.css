@@ -1789,3 +1789,101 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
   .guide-step:nth-child(even) .guide-body p { margin-left: auto; }
   .guide-step:nth-child(even) .guide-socials { justify-content: flex-end; }
 }
+/* ============================================================
+   AFTERMOVIE — jedna karta s ozdobným rámem místo boxů
+   ============================================================ */
+.aftermovie { max-width: 920px; margin: 0 auto 2.4rem; }
+.am-frame {
+  position: relative;
+  border: 1px solid rgba(216, 169, 78, 0.55);
+  border-radius: 6px;
+  padding: 9px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(216, 169, 78, 0.08), transparent 60%),
+    rgba(7, 6, 10, 0.85);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 40px rgba(216, 169, 78, 0.12);
+}
+.am-frame::before {
+  content: '';
+  position: absolute; inset: 9px;
+  border: 1px solid rgba(216, 169, 78, 0.22);
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 2;
+}
+/* rohové akcenty */
+.am-frame::after {
+  content: '';
+  position: absolute; inset: -5px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--gold), var(--gold)) 0 0 / 26px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 0 0 / 1px 26px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 100% 0 / 26px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 100% 0 / 1px 26px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 0 100% / 26px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 0 100% / 1px 26px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 100% 100% / 26px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) 100% 100% / 1px 26px no-repeat;
+  opacity: 0.85;
+}
+.am-orn {
+  position: absolute; top: 0; left: 50%;
+  transform: translate(-50%, -58%);
+  background: var(--bg);
+  color: var(--gold);
+  font-size: 0.95rem;
+  padding: 0 0.8em;
+  line-height: 1;
+  z-index: 3;
+  text-shadow: 0 0 14px rgba(216, 169, 78, 0.7);
+}
+.am-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  background: #000;
+}
+.am-play {
+  position: absolute; inset: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(7, 6, 10, 0.25), rgba(7, 6, 10, 0.55));
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 3px;
+  transition: opacity 0.4s ease;
+}
+.am-play.is-hidden { opacity: 0; pointer-events: none; }
+.am-play-ring {
+  width: 86px; height: 86px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(216, 169, 78, 0.85);
+  transform: rotate(45deg);
+  border-radius: 10px;
+  background: rgba(7, 6, 10, 0.55);
+  color: var(--gold-light);
+  box-shadow: 0 0 34px rgba(216, 169, 78, 0.35), inset 0 0 18px rgba(216, 169, 78, 0.12);
+  animation: playPulse 2.4s ease-in-out infinite;
+  backdrop-filter: blur(4px);
+}
+.am-play-ring svg { transform: rotate(-45deg); margin-left: 4px; }
+@keyframes playPulse {
+  0%, 100% { box-shadow: 0 0 26px rgba(216, 169, 78, 0.3), inset 0 0 18px rgba(216, 169, 78, 0.1); }
+  50%      { box-shadow: 0 0 48px rgba(255, 122, 24, 0.5), inset 0 0 26px rgba(216, 169, 78, 0.2); }
+}
+.am-play:hover .am-play-ring { border-color: var(--gold-light); color: #fff; }
+.am-play-label {
+  font-family: var(--font-head);
+  font-size: clamp(0.85rem, 2.6vw, 1.05rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+@media (prefers-reduced-motion: reduce) { .am-play-ring { animation: none; } }

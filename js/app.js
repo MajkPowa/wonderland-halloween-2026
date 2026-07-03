@@ -66,6 +66,7 @@ const I18N = {
     'strip.title': 'See it with your own eyes',
     'band.orloj': 'When midnight strikes,<br>Prague transforms.',
     'band.fog': 'One night. One city.<br>One Wonderland.',
+    'why.play': 'Watch last year’s Wonderland',
     'why.b1': 'The biggest costume Halloween show in Prague',
     'why.b2': 'The legendary Lucerna palace',
     'why.b3': 'Produced since 2010',
@@ -609,6 +610,24 @@ function initBats() {
 }
 
 /* ============================================================
+   AFTERMOVIE — přehrání videa z minulých ročníků
+   ============================================================ */
+function initAftermovie() {
+  const btn = $('#amPlay');
+  const video = $('#aftermovie');
+  if (!btn || !video) return;
+  btn.addEventListener('click', () => {
+    btn.classList.add('is-hidden');
+    video.controls = true;
+    const p = video.play();
+    if (p) p.catch(() => {});
+    try { if (window.dataLayer) dataLayer.push({ event: 'aftermovie_play' }); if (window.fbq) fbq('trackCustom', 'AftermoviePlay'); } catch (e) {}
+  });
+  // po skončení znovu nabídnout přehrání
+  video.addEventListener('ended', () => { btn.classList.remove('is-hidden'); video.controls = false; });
+}
+
+/* ============================================================
    PROMO CHIP — kopírování slevového kódu Partyworld
    ============================================================ */
 function initPromoChip() {
@@ -828,6 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBats();
   initTixEmbers();
   initPromoChip();
+  initAftermovie();
   initCountUp();
   initMenu();
   initEmbers();

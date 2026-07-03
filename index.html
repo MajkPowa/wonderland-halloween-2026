@@ -249,16 +249,20 @@
     <div class="container why-inner">
       <h2 class="section-title reveal" data-i18n="why.title">Tohle není obyčejná párty.<br>Tohle je Wonderland.</h2>
       <p class="section-lead reveal" data-i18n="why.lead">V Praze je jedna noc, na kterou se čeká celý rok. Velký sál Lucerny se promění v temný svět plný dekorací, masek, světel, hudby, herců a show. Všechno ostatní je jen kompromis.</p>
-      <ul class="why-grid">
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-crown"/></svg></span><span class="why-text" data-i18n="why.b1">Největší kostýmová Halloween show v Praze</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-lucerna"/></svg></span><span class="why-text" data-i18n="why.b2">Legendární pražská Lucerna</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-clock"/></svg></span><span class="why-text" data-i18n="why.b3">Produkce s historií od roku 2010</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-crowd"/></svg></span><span class="why-text" data-i18n="why.b4">Tisíce lidí v kostýmech na jednom místě</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-flame"/></svg></span><span class="why-text" data-i18n="why.b5">Velkolepá halloweenská show</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-trophy"/></svg></span><span class="why-text" data-i18n="why.b6">Soutěž o nejlepší masku</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-glass"/></svg></span><span class="why-text" data-i18n="why.b7">VIP zóny a rezervace stolů</span></li>
-        <li class="reveal"><span class="why-emblem" aria-hidden="true"><svg class="why-svg"><use href="#i-camera"/></svg></span><span class="why-text" data-i18n="why.b8">Fotogenické dekorace a tematické scény</span></li>
-      </ul>
+      <div class="aftermovie reveal">
+        <div class="am-frame">
+          <span class="am-orn" aria-hidden="true">✦</span>
+          <video id="aftermovie" preload="none" poster="img/poster-aftermovie.jpg" playsinline>
+            <source src="video/aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="am-play" id="amPlay" aria-label="Přehrát video z minulých ročníků">
+            <span class="am-play-ring" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            </span>
+            <span class="am-play-label" data-i18n="why.play">Přehraj si loňský Wonderland</span>
+          </button>
+        </div>
+      </div>
       <div class="center reveal">
         <a href="#" class="btn btn-primary btn-lg js-buy" data-tier="why" data-i18n="cta.wanna">Chci být u toho</a>
       </div>
