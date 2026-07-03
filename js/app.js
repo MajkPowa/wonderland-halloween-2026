@@ -113,6 +113,19 @@ const I18N = {
     'prog.i5': 'Best mask announced', 'prog.i6': 'Afterparty till morning',
     'prog.note': 'The program may shift slightly on site — the show is run by Wonderland.',
 
+    'gd.title': 'The perfect Halloween playbook',
+    'gd.lead': 'Four steps between a mortal and an unforgettable night in Wonderland.',
+    'gd.s1.t': 'Get your ticket while it’s cheapest',
+    'gd.s1.d': 'Tickets get pricier wave by wave. Buy first, pay the least — and know for sure you’re in on October 30.',
+    'gd.s1.cta': 'Buy in wave 1',
+    'gd.s2.t': 'Hunt your costume early',
+    'gd.s2.d': 'Last-minute shoppers face empty racks and compromises. Pick yours now while the best pieces are still there — our partner Partyworld.cz gives you 10% off with code WONDERLAND.',
+    'gd.s2.code': '−10% at Partyworld.cz · click to copy',
+    'gd.s2.copied': 'Copied to clipboard ✓',
+    'gd.s3.t': 'Film your prep & tag us',
+    'gd.s3.d': 'Makeup, costume, the ride — film it, tag @wonderland_halloween and let everyone know you’re coming. We reshare the best prep videos.',
+    'gd.s4.t': 'Arrive at 9 PM',
+    'gd.s4.d': 'The gates open at 9 PM. Come on time — skip the queues at check-in and catch the first show and the best spots.',
     'cont.title': 'Best mask contest',
     'cont.lead': 'The best masks of the night walk the runway in front of the whole Lucerna. The jury scores four things:',
     'cont.c1': 'Originality', 'cont.c2': 'Craft', 'cont.c3': 'Show effect', 'cont.c4': 'Overall impression',
@@ -596,6 +609,40 @@ function initBats() {
 }
 
 /* ============================================================
+   PROMO CHIP — kopírování slevového kódu Partyworld
+   ============================================================ */
+function initPromoChip() {
+  const chip = $('#promoChip');
+  if (!chip) return;
+  const note = $('#promoNote');
+  const original = () => currentLang() === 'en' ? I18N.en['gd.s2.code'] : '−10 % na Partyworld.cz · klikni a zkopíruj';
+  function showCopied() {
+    note.textContent = currentLang() === 'en' ? I18N.en['gd.s2.copied'] : 'Zkopírováno do schránky ✓';
+    setTimeout(() => { note.textContent = original(); }, 2200);
+  }
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText('WONDERLAND');
+      showCopied();
+    } catch (e) {
+      // fallback pro prohlížeče bez Clipboard API
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = 'WONDERLAND';
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showCopied();
+      } catch (e2) { /* kód je viditelný, uživatel si ho opíše */ }
+    }
+  }
+  chip.addEventListener('click', copy);
+  chip.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); } });
+}
+
+/* ============================================================
    TICKET EMBERS — jiskry stoupající sekcí vstupenek
    ============================================================ */
 function initTixEmbers() {
@@ -780,6 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyVideos();
   initBats();
   initTixEmbers();
+  initPromoChip();
   initCountUp();
   initMenu();
   initEmbers();

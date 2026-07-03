@@ -1690,3 +1690,102 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
 @media (min-width: 900px) {
   .tix-fire { display: none !important; }
 }
+/* ============================================================
+   GUIDE — návod na dokonalý Halloween
+   ============================================================ */
+.guide { overflow: hidden; background: var(--bg-2); }
+.guide-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.guide-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(7, 6, 10, 0.6) 25%, rgba(7, 6, 10, 0.6) 75%, var(--bg) 100%);
+  pointer-events: none;
+}
+.guide .container { position: relative; z-index: 1; }
+.guide-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.2rem, 6vw, 3.6rem);
+  max-width: 980px;
+  margin: 2.6rem auto 0;
+}
+.guide-step {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+.guide-img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(216, 169, 78, 0.35);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+  transform: rotate(-1.2deg);
+}
+.guide-step:nth-child(even) .guide-img { transform: rotate(1.2deg); }
+.guide-img img { width: 100%; height: auto; display: block; }
+.guide-img::after {
+  content: '';
+  position: absolute; inset: 7px;
+  border: 1px solid rgba(216, 169, 78, 0.25);
+  border-radius: 8px;
+  pointer-events: none;
+}
+.guide-body { position: relative; padding: 0.4rem 0.2rem; }
+.guide-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.9;
+  text-shadow: 0 0 26px rgba(216, 169, 78, 0.5);
+  margin-bottom: 0.35rem;
+}
+.guide-body h3 {
+  font-family: var(--font-head);
+  font-size: clamp(1.2rem, 3.6vw, 1.55rem);
+  color: var(--gold-light);
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+.guide-body p { color: var(--text); font-size: 0.96rem; margin-bottom: 1.1rem; max-width: 46ch; }
+.guide-socials { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.promo-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  border: 2px dashed rgba(216, 169, 78, 0.65);
+  border-radius: 10px;
+  padding: 0.7rem 1.6rem;
+  margin: 0 0 1rem;
+  cursor: pointer;
+  background: rgba(216, 169, 78, 0.06);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+  user-select: none;
+}
+.promo-chip:hover { background: rgba(216, 169, 78, 0.13); box-shadow: 0 0 26px rgba(216, 169, 78, 0.25); }
+.promo-chip:active { transform: scale(0.97); }
+.promo-code {
+  font-family: var(--font-head);
+  font-size: clamp(1.15rem, 4vw, 1.5rem);
+  letter-spacing: 0.3em;
+  color: var(--gold-light);
+  text-shadow: 0 0 18px rgba(216, 169, 78, 0.55);
+}
+.promo-note { font-size: 0.74rem; color: var(--smoke); letter-spacing: 0.04em; }
+@media (min-width: 860px) {
+  .guide-step { grid-template-columns: 5fr 6fr; gap: clamp(1.8rem, 4vw, 3.2rem); }
+  .guide-step:nth-child(even) .guide-img { order: 2; }
+  .guide-step:nth-child(even) .guide-body { order: 1; text-align: right; }
+  .guide-step:nth-child(even) .guide-body p { margin-left: auto; }
+  .guide-step:nth-child(even) .guide-socials { justify-content: flex-end; }
+}
