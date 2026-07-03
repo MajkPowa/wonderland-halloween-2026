@@ -662,6 +662,15 @@ function initPromoChip() {
 }
 
 /* ============================================================
+   FX READY — težší dekorace (plameny) až po načtení stránky
+   ============================================================ */
+function initFxReady() {
+  const arm = () => setTimeout(() => document.body.classList.add('fx-ready'), 400);
+  if (document.readyState === 'complete') arm();
+  else addEventListener('load', arm, { once: true });
+}
+
+/* ============================================================
    TICKET EMBERS — jiskry stoupající sekcí vstupenek
    ============================================================ */
 function initTixEmbers() {
@@ -848,6 +857,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTixEmbers();
   initPromoChip();
   initAftermovie();
+  initFxReady();
   initCountUp();
   initMenu();
   initEmbers();

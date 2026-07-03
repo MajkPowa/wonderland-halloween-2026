@@ -1887,3 +1887,42 @@ section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; position: relative; }
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
 @media (prefers-reduced-motion: reduce) { .am-play-ring { animation: none; } }
+/* ============================================================
+   PERF: mobilni marquee pres sprite pozadi (GPU texture fix)
+   + odlozene nacteni plamenu az po loadu stranky
+   ============================================================ */
+.strip-bgrow { display: none; }
+@media (max-width: 899px) {
+  .strip-row { display: none !important; }
+  .strip-bgrow {
+    display: block;
+    height: 150px;
+    border-radius: 8px;
+    background-repeat: repeat-x;
+    background-position: 0 center;
+    background-size: auto 100%;
+  }
+  .strip-bgrow-a {
+    background-image: url('../img/strip-a.webp');
+    animation: stripBgL 46s linear infinite;
+  }
+  .strip-bgrow-b {
+    background-image: url('../img/strip-b.webp');
+    animation: stripBgR 40s linear infinite;
+  }
+}
+@keyframes stripBgL {
+  from { background-position-x: 0; }
+  to   { background-position-x: -1800px; }
+}
+@keyframes stripBgR {
+  from { background-position-x: -1401.56px; }
+  to   { background-position-x: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .strip-bgrow { animation: none !important; }
+}
+
+/* plameny se stahuji az po nacteni celeho webu */
+.tix-fire { background-image: none; }
+body.fx-ready .tix-fire { background-image: url('../img/flames.webp'); }
