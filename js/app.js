@@ -23,7 +23,7 @@ const CONFIG = {
   waveName: { cs: '1. vlna', en: 'Wave 1' },
 
   // --- Tracking (vyplňte ID → načte se po souhlasu s cookies) ---
-  ga4Id: 'G-X566159YZW', // Google Analytics 4 measurement ID
+  ga4Id: 'G-4N1DS9TGE6', // Google Analytics 4 measurement ID
   gtmId: '',        // např. 'GTM-XXXXXXX'
   metaPixelId: '',  // např. '1234567890'
   tiktokPixelId: '',// např. 'ABCDEFGHIJ'
