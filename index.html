@@ -72,7 +72,7 @@
     "performer": [
       { "@type": "Person", "name": "DJ Mairee" },
       { "@type": "Person", "name": "Mike Frost" },
-      { "@type": "MusicGroup", "name": "DJs Jaracuda" }
+      { "@type": "MusicGroup", "name": "Jarakuda DJs" }
     ],
     "offers": {
       "@type": "Offer",
@@ -545,15 +545,35 @@
           <img class="dj-logo" src="img/logo-frost.webp" alt="" width="400" height="221" loading="lazy" decoding="async">
           <span class="dj-tag dj-tag-photo" data-i18n="lu.dj">DJ set</span>
         </article>
-        <article class="dj-card dj-card-type reveal">
-          <div class="dj-mono" aria-hidden="true">J</div>
-          <h3 class="dj-name">DJs Jaracuda</h3>
-          <span class="dj-tag" data-i18n="lu.dj">DJ set</span>
+        <article class="dj-card dj-card-photo dj-card-bio reveal" id="djJarakuda" role="button" tabindex="0" aria-label="Jarakuda DJs — zobrazit bio">
+          <img class="dj-photo" src="img/dj-jarakuda-300.webp" srcset="img/dj-jarakuda-300.webp 300w, img/dj-jarakuda-560.webp 560w" sizes="(min-width:768px) 30vw, 82vw" alt="Jarakuda DJs — duo za DJ pultem" loading="lazy" decoding="async">
+          <div class="dj-overlay" aria-hidden="true"></div>
+          <div class="dj-caption">
+            <h3 class="dj-name-photo">Jarakuda DJs</h3>
+            <span class="dj-tag dj-tag-photo" data-i18n="lu.jara.tag">DJ set · 30+ let zkušeností</span>
+            <span class="dj-more" data-i18n="lu.bio">Přečíst bio →</span>
+          </div>
         </article>
       </div>
       <p class="lineup-note reveal" data-i18n="lu.note">…a další hosté večera. Lineup se ještě rozroste.</p>
     </div>
   </section>
+
+  <!-- ================= DJ BIO MODAL ================= -->
+  <div class="modal dj-modal" id="djModal" hidden role="dialog" aria-modal="true" aria-labelledby="djModalName">
+    <div class="modal-box dj-modal-box">
+      <button class="modal-close" id="djModalClose" aria-label="Zavřít">×</button>
+      <img class="dj-modal-img" src="img/dj-jarakuda-wide-700.webp" srcset="img/dj-jarakuda-wide-700.webp 700w, img/dj-jarakuda-wide-1200.webp 1200w" sizes="(min-width:600px) 520px, 88vw" alt="Jarakuda DJs" loading="lazy" decoding="async">
+      <h3 id="djModalName" class="dj-modal-name">Jarakuda DJs</h3>
+      <div class="dj-modal-bio" data-i18n="lu.jara.bio">
+        <p><strong>Jarakuda DJs</strong> spojují více než <strong>30 let zkušeností</strong> za DJ pultem s moderním přístupem k hudbě a zábavě. Za sebou máme stovky úspěšných akcí a dobře víme, že žádné dvě nejsou stejné.</p>
+        <p>Proč vznikl projekt dvou DJs? Společná vize — vytvořit DJ projekt, který spojuje zkušenosti, cit pro atmosféru a moderní hudební produkci. Naším cílem je hlavně bavit hosty.</p>
+        <p>Každý náš set vzniká přímo na místě podle atmosféry a energie publika. Nespoléháme na předem připravené playlisty — čteme parket, reagujeme na každý okamžik a vytváříme hudební příběh, který udrží hosty v pohybu po celý večer.</p>
+        <p>Kombinujeme ověřené světové hity, aktuální klubové novinky i vlastní produkci, abychom každé akci dali jedinečný charakter a nezapomenutelnou energii.</p>
+      </div>
+      <a href="#koupit" class="btn btn-primary js-buy" data-tier="lineup" data-i18n="cta.buy">Koupit lístek</a>
+    </div>
+  </div>
 
   <!-- ================= 7) SOUTĚŽ MASEK ================= -->
   <section class="contest" id="soutez">

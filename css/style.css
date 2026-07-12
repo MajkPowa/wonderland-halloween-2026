@@ -1934,3 +1934,62 @@ body.fx-ready .tix-fire { background-image: url('../img/flames.webp'); }
   .tix-fire-c { top: -10%; }
   .tix-wrap::before { top: -6px; height: 70px; }
 }
+/* ============================================================
+   DJ BIO — fotokarta Jarakuda + modal s medailonkem
+   ============================================================ */
+.dj-card-bio { cursor: pointer; padding: 0; }
+.dj-caption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.3rem;
+  padding: 2.4rem 1rem 1.1rem;
+  text-align: center;
+}
+.dj-name-photo {
+  font-family: var(--font-head);
+  font-size: clamp(1.15rem, 3.6vw, 1.5rem);
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+.dj-card-bio .dj-tag-photo { position: static; transform: none; }
+.dj-more {
+  font-family: var(--font-head);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(216, 169, 78, 0.5);
+  padding-bottom: 1px;
+  margin-top: 0.25rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.dj-card-bio:hover .dj-more { color: var(--gold-light); border-color: var(--gold-light); }
+
+.dj-modal-box {
+  max-width: 560px;
+  text-align: left;
+  padding: 1.6rem 1.6rem 1.8rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.dj-modal-img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin-bottom: 1.1rem;
+}
+.dj-modal-name {
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 0.9rem;
+}
+.dj-modal-bio p { color: var(--text); font-size: 0.95rem; margin-bottom: 0.8rem; }
+.dj-modal-bio strong { color: var(--gold-light); }
+.dj-modal-box .btn { display: block; margin: 1.2rem auto 0; }
+@media (min-width: 900px) {
+  .lineup-grid .dj-card-bio { transform: none; }
+}

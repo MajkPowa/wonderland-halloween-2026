@@ -74,6 +74,9 @@ const I18N = {
     'lu.lead': 'Names behind the decks that will move the whole Great Hall all night long.',
     'lu.dj': 'DJ set',
     'lu.note': '…and more guests of the night. The lineup keeps growing.',
+    'lu.bio': 'Read bio →',
+    'lu.jara.tag': 'DJ set · 30+ years of experience',
+    'lu.jara.bio': '<p><strong>Jarakuda DJs</strong> combine over <strong>30 years of experience</strong> behind the decks with a modern approach to music and entertainment. Hundreds of successful events behind us — and we know no two are ever the same.</p><p>Why a two-DJ project? A shared vision — to build a DJ act that merges experience, a feel for atmosphere and modern music production. Our main goal is simply to entertain the crowd.</p><p>Every set is built live, on the spot, to match the atmosphere and the energy of the crowd. We don’t rely on pre-made playlists — we read the floor, react to every moment and create a musical story that keeps the room moving all night.</p><p>We mix proven global hits, fresh club releases and our own productions to give every event a unique character and unforgettable energy.</p>',
     'cta.buy': 'Buy tickets', 'cta.program': 'See the program', 'cta.wanna': 'I want in',
     'cta.ticket': 'Buy a ticket', 'cta.join': 'Join them this year',
 
@@ -724,6 +727,32 @@ function initPromoChip() {
 }
 
 /* ============================================================
+   DJ BIO MODAL — medailonek Jarakuda
+   ============================================================ */
+function initDjModal() {
+  const card = $('#djJarakuda');
+  const modal = $('#djModal');
+  if (!card || !modal) return;
+  const open = () => {
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
+  };
+  const close = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lenis) lenis.start();
+  };
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  $('#djModalClose').addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+  // zavřít při kliku na Koupit lístek v modalu (buy handler pak odscrolluje)
+  modal.querySelectorAll('.js-buy').forEach(b => b.addEventListener('click', close));
+}
+
+/* ============================================================
    FX READY — težší dekorace (plameny) až po načtení stránky
    ============================================================ */
 function initFxReady() {
@@ -949,6 +978,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTixEmbers();
   initPromoChip();
   initAftermovie();
+  initDjModal();
   initFxReady();
   initCountUp();
   initMenu();
