@@ -960,7 +960,10 @@ function initForms() {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  const lang = currentLang();
+  // ?lang=en|cs v URL má přednost (hreflang alternates, redirecty z /en/)
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  const lang = (urlLang === 'en' || urlLang === 'cs') ? urlLang : currentLang();
+  if (urlLang === 'en' || urlLang === 'cs') localStorage.setItem('wl_lang', urlLang);
   if (lang !== 'cs') setLang(lang);
   $('#langSwitch').addEventListener('click', () => setLang(currentLang() === 'cs' ? 'en' : 'cs'));
   $('#langSwitchMobile').addEventListener('click', () => setLang(currentLang() === 'cs' ? 'en' : 'cs'));
